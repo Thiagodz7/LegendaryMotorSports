@@ -1,11 +1,21 @@
-<p>agendamento works!</p>
-
 <div class="jumbotron py-3">
-  <h1 class="display-4 text-center">Payment Detail Register</h1>
+  <h1 class="display-4 text-center">Agendamentos</h1>
 </div>
 
 <div class="row">
   <div class="col-md-6">
+    <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+      <input type="hidden" name="paymentDetailId" [value]="service.formData1.agendamentosId" />
+      <div class="form-group">
+          <label>Titular</label>
+          <input class="form-control form-control-lg" placeholder="MM/YY" name="dataLocacao"
+              #dataLocacao="ngModel" [(ngModel)]="service.formData1.dataLocacao"
+              required [class.invalid]="dataLocacao.invalid && dataLocacao.touched">
+      </div>
+      <div class="form-group">
+          <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Agendar</button>
+      </div>
+  </form>
   </div>
   <!-- ----------------------------- -->
   <div class="col-md-6">
@@ -22,15 +32,15 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let pd of service.list1">
-                  <td (click)="populateForm(pd)">{{pd.dataLocacao}}</td>
-                  <td (click)="populateForm(pd)">{{pd.tempoLocacao}}</td>
-                  <td (click)="populateForm(pd)">{{pd.tipoFK}}</td>
-                  <td (click)="populateForm(pd)">{{pd.veiculoFK}}</td>
-                  <td (click)="populateForm(pd)">{{pd.clienteFK}}</td>
-                  <td (click)="populateForm(pd)">{{pd.valorFinal}}</td>
+              <tr *ngFor="let ag of service.list1">
+                  <td (click)="populateForm(ag)">{{ag.dataLocacao}}</td>
+                  <td (click)="populateForm(ag)">{{ag.tempoLocacao}}</td>
+                  <td (click)="populateForm(ag)">{{ag.tipoFK}}</td>
+                  <td (click)="populateForm(ag)">{{ag.veiculoFK}}</td>
+                  <td (click)="populateForm(ag)">{{ag.clienteFK}}</td>
+                  <td (click)="populateForm(ag)">{{ag.valorFinal}}</td>
                   <td>
-                      <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.agendamentosId)"></i>
+                      <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(ag.agendamentosId)"></i>
                   </td>
               </tr>
           </tbody>

@@ -1,6 +1,6 @@
 export class LocacaoVeiculos {
   agendamentosId: number=0;
-  dataLocacao: Date = new Date();
+  dataLocacao: string = '';
   tempoLocacao: number=0;
   tipoFK: number=0;
   veiculoFK: number=0;

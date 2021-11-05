@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { LocacaoVeiculos } from 'src/app/shared/Agendamento/locacao-veiculos.model';
 import { LocacaoVeiculosService } from 'src/app/shared/Agendamento/locacao-veiculos.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-agendamento',
