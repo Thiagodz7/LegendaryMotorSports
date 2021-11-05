@@ -1,0 +1,39 @@
+<p>agendamento works!</p>
+
+<div class="jumbotron py-3">
+  <h1 class="display-4 text-center">Payment Detail Register</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+  </div>
+  <!-- ----------------------------- -->
+  <div class="col-md-6">
+      <table class="table">
+          <thead class="thead-light">
+              <tr>
+                  <th>Data Locação</th>
+                  <th>Tempo Locação</th>
+                  <th>Tipo</th>
+                  <th>Veiculos</th>
+                  <th>Cliente</th>
+                  <th>Valor Final</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let pd of service.list1">
+                  <td (click)="populateForm(pd)">{{pd.dataLocacao}}</td>
+                  <td (click)="populateForm(pd)">{{pd.tempoLocacao}}</td>
+                  <td (click)="populateForm(pd)">{{pd.tipoFK}}</td>
+                  <td (click)="populateForm(pd)">{{pd.veiculoFK}}</td>
+                  <td (click)="populateForm(pd)">{{pd.clienteFK}}</td>
+                  <td (click)="populateForm(pd)">{{pd.valorFinal}}</td>
+                  <td>
+                      <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.agendamentosId)"></i>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
