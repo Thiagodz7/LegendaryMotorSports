@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocacaoVeiculo.Migrations
 {
     [DbContext(typeof(LocacaoVeiculoContext))]
-    [Migration("20211105124846_CorreçãoDateTime")]
-    partial class CorreçãoDateTime
+    [Migration("20211108155840_FkAdd")]
+    partial class FkAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,7 +85,7 @@ namespace LocacaoVeiculo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Endereço")
+                    b.Property<string>("Endereco")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -126,42 +126,43 @@ namespace LocacaoVeiculo.Migrations
 
             modelBuilder.Entity("LocacaoVeiculo.Models.Veiculo", b =>
                 {
-                    b.Property<int>("VeiculoId")
+                    b.Property<int>("veiculoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Ano")
+                    b.Property<string>("ano")
+                        .IsRequired()
                         .HasMaxLength(4)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(4)");
 
-                    b.Property<string>("Descricao")
+                    b.Property<string>("descricao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Disponibilidade")
+                    b.Property<bool>("disponibilidade")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ImgUrl")
+                    b.Property<string>("imgUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Placa")
+                    b.Property<string>("placa")
                         .IsRequired()
                         .HasMaxLength(7)
                         .HasColumnType("nvarchar(7)");
 
-                    b.Property<string>("TipoCombustivel")
+                    b.Property<string>("tipoCombustivel")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("tipoFk")
                         .HasColumnType("int");
 
-                    b.HasKey("VeiculoId");
+                    b.HasKey("veiculoId");
 
                     b.HasIndex("tipoFk");
 

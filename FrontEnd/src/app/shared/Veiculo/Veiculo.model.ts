@@ -4,6 +4,9 @@ export class Veiculo {
   nome: string='';
   placa: string='';
   ano: number=0;
-  disponibilidade: boolean=true;
+  tipoCombustivel: string ='';
+  imgUrl: string = '';
+  disponibilidade: boolean = false;
   descricao: string='';
 }
+

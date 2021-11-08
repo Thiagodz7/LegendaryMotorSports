@@ -28,6 +28,7 @@ namespace LocacaoVeiculo.Models
         [ForeignKey("veiculoFk")]
         public Veiculo veiculo { get; set; }
 
+        [Required]
         public int clienteFk { get; set; }
         [ForeignKey("clienteFk")]
         public Cliente cliente { get; set; }

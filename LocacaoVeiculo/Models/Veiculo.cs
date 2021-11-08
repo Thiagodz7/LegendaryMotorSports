@@ -9,35 +9,36 @@ namespace LocacaoVeiculo.Models
 {
     public class Veiculo
     {
-        public int VeiculoId { get; set; }
+        public int veiculoId { get; set; }
 
         [Required]
         public int tipoFk { get; set; }
+
         [ForeignKey("tipoFk")]
         public Tipo tipo { get; set; }
 
         [Required]
         [MinLength(3)]
-        public string Nome { get; set; }
+        public string nome { get; set; }
 
         [Required]
         [MinLength(7)]
         [MaxLength(7)]
-        public string Placa { get; set; }
+        public string placa { get; set; }
 
         [Required]
         [MinLength(4)]
         [MaxLength(4)]
-        public int Ano { get; set; }
+        public string ano { get; set; }
 
         [Required]
-        public string TipoCombustivel { get; set; }
+        public string tipoCombustivel { get; set; }
 
         [Required]
-        public string ImgUrl { get; set; }
+        public string imgUrl { get; set; }
 
-        public bool Disponibilidade { get; set; }
+        public bool disponibilidade { get; set; }
 
-        public string Descricao { get; set; }
+        public string descricao { get; set; }
     }
 }

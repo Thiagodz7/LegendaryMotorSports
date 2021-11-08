@@ -47,7 +47,7 @@ namespace LocacaoVeiculo.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutVeiculo(int id, Veiculo veiculo)
         {
-            if (id != veiculo.VeiculoId)
+            if (id != veiculo.veiculoId)
             {
                 return BadRequest();
             }
@@ -81,7 +81,7 @@ namespace LocacaoVeiculo.Controllers
             _context.Veiculos.Add(veiculo);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetVeiculo", new { id = veiculo.VeiculoId }, veiculo);
+            return CreatedAtAction("GetVeiculo", new { id = veiculo.veiculoId }, veiculo);
         }
 
         // DELETE: api/Veiculos/5
@@ -102,7 +102,7 @@ namespace LocacaoVeiculo.Controllers
 
         private bool VeiculoExists(int id)
         {
-            return _context.Veiculos.Any(e => e.VeiculoId == id);
+            return _context.Veiculos.Any(e => e.veiculoId == id);
         }
     }
 }

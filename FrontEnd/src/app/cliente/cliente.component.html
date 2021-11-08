@@ -1,1 +1,86 @@
-<p>cliente works!</p>
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center">Clientes</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+        <input type="hidden" name="paymentDetailId" [value]="service.formData.clienteId"/>
+        <div class="form-group">
+                <label>Nome</label>
+            <input class="form-control form-control-lg" placeholder="digite seu nome" name="nome"
+                #nome="ngModel" [(ngModel)]="service.formData.nome"
+                required [class.invalid]="nome.invalid && nome.touched">
+                <label>CPF</label>
+            <input class="form-control form-control-lg" placeholder="---.---.---.--" name="cpf"
+                #cpf="ngModel" [(ngModel)]="service.formData.cpf"
+                required [class.invalid]="cpf.invalid && cpf.touched">
+                <label>CNH</label>
+            <input class="form-control form-control-lg" placeholder="-----------" name="cnh"
+                #cnh="ngModel" [(ngModel)]="service.formData.cnh"
+                required [class.invalid]="cnh.invalid && cnh.touched">
+                <label>Endereço</label>
+            <input class="form-control form-control-lg" placeholder="Digite seu Endereço" name="Endereco"
+                #Endereco="ngModel" [(ngModel)]="service.formData.endereco"
+                required [class.invalid]="Endereco.invalid && Endereco.touched">
+                <label>Telefone</label>
+            <input class="form-control form-control-lg" placeholder="(--)----- ----" name="telefone"
+                #telefone="ngModel" [(ngModel)]="service.formData.telefone"
+                required [class.invalid]="telefone.invalid && telefone.touched">
+                <label>Email</label>
+            <input class="form-control form-control-lg" placeholder="exemplo@email.com" name="email"
+                #email="ngModel" [(ngModel)]="service.formData.email"
+                required [class.invalid]="email.invalid && email.touched">
+                <label>Data de Nascimento</label>
+            <input class="form-control form-control-lg" placeholder="AA/MM/DD" name="dataNascimento"
+                #dataNascimento="ngModel" [(ngModel)]="service.formData.dataNascimento"
+                required [class.invalid]="dataNascimento.invalid && dataNascimento.touched">
+                <label>Quantidade de Locações</label>
+            <input class="form-control form-control-lg" placeholder="Digite a quantidade de locações" name="qtdLocacoes"
+                #qtdLocacoes="ngModel" [(ngModel)]="service.formData.qtdLocacoes"
+                required [class.invalid]="qtdLocacoes.invalid && qtdLocacoes.touched">
+                <label>Desconto</label>
+            <input class="form-control form-control-lg" placeholder="desconto não aplicado" name="desconto"
+                #desconto="ngModel" [(ngModel)]="service.formData.desconto"
+                required [class.invalid]="desconto.invalid && desconto.touched">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Cadastrar</button>
+        </div>
+    </form>
+    </div>
+    <!-- ----------------------------- -->
+    <div class="col-md-6">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Nome</th>
+                    <th>Cpf</th>
+                    <th>Cnh</th>
+                    <th>Endereço</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Data de Nascimento</th>
+                    <th>Quantidade de Locações</th>
+                    <th>Desconto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cl of service.list">
+                    <td (click)="populateForm(cl)">{{cl.nome}}</td>
+                    <td (click)="populateForm(cl)">{{cl.cpf}}</td>
+                    <td (click)="populateForm(cl)">{{cl.cnh}}</td>
+                    <td (click)="populateForm(cl)">{{cl.endereco}}</td>
+                    <td (click)="populateForm(cl)">{{cl.telefone}}</td>
+                    <td (click)="populateForm(cl)">{{cl.email}}</td>
+                    <td (click)="populateForm(cl)">{{cl.dataNascimento}}</td>
+                    <td (click)="populateForm(cl)">{{cl.qtdLocacoes}}</td>
+                    <td (click)="populateForm(cl)">{{cl.desconto}}</td>
+                    <td>
+                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(cl.clienteId)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>

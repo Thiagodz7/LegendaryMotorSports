@@ -7,27 +7,27 @@ import { HttpClient } from "@angular/common/http";
 })
 export class LocacaoVeiculosService {
   readonly baseURL = 'https://localhost:5001/api/Agendamentos'
-  formData1: LocacaoVeiculos = new LocacaoVeiculos();
+  formData: LocacaoVeiculos = new LocacaoVeiculos();
 
-  list1: LocacaoVeiculos[]|undefined;
+  list: LocacaoVeiculos[]|undefined;
 
   constructor(private http: HttpClient) { }
 
   postAgendamento() {
-    return this.http.post(this.baseURL, this.formData1);
+    return this.http.post(this.baseURL, this.formData);
   }
 
   putAgendamento() {
-    return this.http.put(`${this.baseURL}/${this.formData1.agendamentosId}`, this.formData1);
+    return this.http.put(`${this.baseURL}/${this.formData.agendamentosId}`, this.formData);
   }
 
   deleteAgendamento(id: number) {
     return this.http.delete(`${this.baseURL}/${id}`);
   }
 
-  refreshList() {
+  refreshAgendamentoList() {
     this.http.get(this.baseURL)
       .toPromise()
-      .then(res =>this.list1 = res as LocacaoVeiculos[]);
+      .then(res =>this.list = res as LocacaoVeiculos[]);
   }
 }

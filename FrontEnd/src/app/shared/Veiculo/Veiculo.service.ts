@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class VeiculosService {
+export class VeiculoService {
   readonly baseURL = 'https://localhost:5001/api/Veiculos'
   formData: Veiculo = new Veiculo();
   list: Veiculo[]|undefined;
@@ -24,7 +24,7 @@ export class VeiculosService {
     return this.http.delete(`${this.baseURL}/${id}`);
   }
 
-  refreshList() {
+  refreshVeiculoList() {
     this.http.get(this.baseURL)
       .toPromise()
       .then(res =>this.list = res as Veiculo[]);

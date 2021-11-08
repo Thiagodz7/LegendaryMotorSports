@@ -25,7 +25,7 @@ namespace LocacaoVeiculo.Models
         public string Cnh { get; set; }
 
         [Required]
-        public string Endereço { get; set; }
+        public string Endereco { get; set; }
 
         [Required]
         [MinLength(8)]

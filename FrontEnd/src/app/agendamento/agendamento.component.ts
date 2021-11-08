@@ -16,11 +16,11 @@ export class AgendamentoComponent implements OnInit {
     private toastr: ToastrService) { }
 
     ngOnInit(): void {
-      this.service.refreshList();
+      this.service.refreshAgendamentoList();
     }
 
     populateForm(selectedRecord: LocacaoVeiculos) {
-      this.service.formData1 = Object.assign({}, selectedRecord);
+      this.service.formData = Object.assign({}, selectedRecord);
     }
 
     onDelete(id: number) {
@@ -28,7 +28,7 @@ export class AgendamentoComponent implements OnInit {
         this.service.deleteAgendamento(id)
           .subscribe(
             res => {
-              this.service.refreshList();
+              this.service.refreshAgendamentoList();
               this.toastr.error("Deletado com Sucesso", 'Detalhe de Pagamento');
             },
             err => { console.log(err) }
@@ -37,7 +37,7 @@ export class AgendamentoComponent implements OnInit {
     }
 
   onSubmit(form: NgForm) {
-    if (this.service.formData1.agendamentosId == 0)
+    if (this.service.formData.agendamentosId == 0)
       this.insertRecord(form);
     else
       this.updateRecord(form);
@@ -47,7 +47,7 @@ export class AgendamentoComponent implements OnInit {
     this.service.postAgendamento().subscribe(
       res => {
         this.resetForm(form);
-        this.service.refreshList();
+        this.service.refreshAgendamentoList();
         this.toastr.success('Enviado com Sucesso!', 'Detalhe de Pagamento Registrado com Sucesso!')
       },
       err => { console.log(err); }
@@ -58,7 +58,7 @@ export class AgendamentoComponent implements OnInit {
     this.service.putAgendamento().subscribe(
       res => {
         this.resetForm(form);
-        this.service.refreshList();
+        this.service.refreshAgendamentoList();
         this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Pagamento Registrados!')
       },
       err => { console.log(err); }
@@ -67,7 +67,7 @@ export class AgendamentoComponent implements OnInit {
 
   resetForm(form: NgForm) {
     form.form.reset();
-    this.service.formData1 = new LocacaoVeiculos();
+    this.service.formData = new LocacaoVeiculos();
   }
 
 }

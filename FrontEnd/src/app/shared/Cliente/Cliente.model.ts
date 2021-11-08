@@ -3,10 +3,10 @@ export class Cliente {
     nome: string='';
     cpf: number=0;
     cnh: number=0;
-    endereço: string='';
+    endereco: string='';
     telefone: number=0;
     email: string='';
-    dataNascimento: Date = new Date();
+    dataNascimento: string = '';
     qtdLocacoes: number=0;
     desconto: boolean = false;
 }

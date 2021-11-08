@@ -3,14 +3,16 @@ using LocacaoVeiculo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocacaoVeiculo.Migrations
 {
     [DbContext(typeof(LocacaoVeiculoContext))]
-    partial class LocacaoVeiculoContextModelSnapshot : ModelSnapshot
+    [Migration("20211108155714_ChaveEstrangeira")]
+    partial class ChaveEstrangeira
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,12 +47,6 @@ namespace LocacaoVeiculo.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("agendamentoId");
-
-                    b.HasIndex("clienteFk");
-
-                    b.HasIndex("tipoFk");
-
-                    b.HasIndex("veiculoFk");
 
                     b.ToTable("Agendamentos");
                 });
@@ -162,47 +158,7 @@ namespace LocacaoVeiculo.Migrations
 
                     b.HasKey("veiculoId");
 
-                    b.HasIndex("tipoFk");
-
                     b.ToTable("Veiculos");
-                });
-
-            modelBuilder.Entity("LocacaoVeiculo.Models.Agendamento", b =>
-                {
-                    b.HasOne("LocacaoVeiculo.Models.Cliente", "cliente")
-                        .WithMany()
-                        .HasForeignKey("clienteFk")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LocacaoVeiculo.Models.Tipo", "tipo")
-                        .WithMany()
-                        .HasForeignKey("tipoFk")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LocacaoVeiculo.Models.Veiculo", "veiculo")
-                        .WithMany()
-                        .HasForeignKey("veiculoFk")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("cliente");
-
-                    b.Navigation("tipo");
-
-                    b.Navigation("veiculo");
-                });
-
-            modelBuilder.Entity("LocacaoVeiculo.Models.Veiculo", b =>
-                {
-                    b.HasOne("LocacaoVeiculo.Models.Tipo", "tipo")
-                        .WithMany()
-                        .HasForeignKey("tipoFk")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("tipo");
                 });
 #pragma warning restore 612, 618
         }

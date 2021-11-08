@@ -24,7 +24,7 @@ export class ClienteService {
     return this.http.delete(`${this.baseURL}/${id}`);
   }
 
-  refreshList() {
+  refreshClienteList() {
     this.http.get(this.baseURL)
       .toPromise()
       .then(res =>this.list = res as Cliente[]);

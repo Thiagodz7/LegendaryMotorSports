@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { NgForm } from '@angular/forms';
+import { Cliente } from 'src/app/shared/Cliente/Cliente.model';
+import { ClienteService } from 'src/app/shared/Cliente/Cliente.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cliente',
@@ -7,9 +12,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClienteComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service: ClienteService ,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.service.refreshClienteList();
   }
 
+  populateForm(selectedRecord: Cliente) {
+    this.service.formData = Object.assign({}, selectedRecord);
+  }
+
+  onDelete(id: number) {
+    if (confirm('Tem Certeza que Deseja Deletar esse Registro?')) {
+      this.service.deleteCliente(id)
+        .subscribe(
+          res => {
+            this.service.refreshClienteList();
+            this.toastr.error("Deletado com Sucesso", 'Detalhe de Pagamento');
+          },
+          err => { console.log(err) }
+        )
+    }
+  }
+
+onSubmit(form: NgForm) {
+  if (this.service.formData.clienteId == 0)
+    this.insertRecord(form);
+  else
+    this.updateRecord(form);
+}
+
+insertRecord(form: NgForm) {
+  this.service.postCliente().subscribe(
+    res => {
+      this.resetForm(form);
+      this.service.refreshClienteList();
+      this.toastr.success('Enviado com Sucesso!', 'Detalhe de Pagamento Registrado com Sucesso!')
+    },
+    err => { console.log(err); }
+  );
+}
+
+updateRecord(form: NgForm) {
+  this.service.putCliente().subscribe(
+    res => {
+      this.resetForm(form);
+      this.service.refreshClienteList();
+      this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Pagamento Registrados!')
+    },
+    err => { console.log(err); }
+  );
+}
+
+resetForm(form: NgForm) {
+  form.form.reset();
+  this.service.formData = new Cliente();
+}
 }
