@@ -1,5 +1,5 @@
 export class Cliente {
-    clienteId: number=0;
+    ClienteId: number=0;
     nome: string='';
     cpf: number=0;
     cnh: number=0;
@@ -8,5 +8,5 @@ export class Cliente {
     email: string='';
     dataNascimento: string = '';
     qtdLocacoes: number=0;
-    desconto: boolean = false;
+    desconto: string = 'false';
 }

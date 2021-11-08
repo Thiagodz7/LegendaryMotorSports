@@ -3,14 +3,16 @@ using LocacaoVeiculo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocacaoVeiculo.Migrations
 {
     [DbContext(typeof(LocacaoVeiculoContext))]
-    partial class LocacaoVeiculoContextModelSnapshot : ModelSnapshot
+    [Migration("20211108185310_alterBoolPstring")]
+    partial class alterBoolPstring
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

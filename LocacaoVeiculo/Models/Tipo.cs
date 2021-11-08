@@ -14,6 +14,6 @@ namespace LocacaoVeiculo.Models
         public string tipo  { get; set; }
 
         [Required]
-        public decimal valorBase { get; set; }
+        public string valorBase { get; set; }
     }
 }

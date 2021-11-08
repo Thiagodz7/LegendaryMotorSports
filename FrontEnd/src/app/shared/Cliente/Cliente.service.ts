@@ -8,7 +8,7 @@ import { HttpClient } from "@angular/common/http";
 export class ClienteService {
   readonly baseURL = 'https://localhost:5001/api/Clientes'
   formData: Cliente = new Cliente();
-  list: Cliente []|undefined;
+  list: Cliente []=[];
 
   constructor(private http: HttpClient) { }
 
@@ -17,14 +17,14 @@ export class ClienteService {
   }
 
   putCliente() {
-    return this.http.put(`${this.baseURL}/${this.formData.clienteId}`, this.formData);
+    return this.http.put(`${this.baseURL}/${this.formData.ClienteId}`, this.formData);
   }
 
   deleteCliente(id: number) {
     return this.http.delete(`${this.baseURL}/${id}`);
   }
 
-  refreshClienteList() {
+  refreshList() {
     this.http.get(this.baseURL)
       .toPromise()
       .then(res =>this.list = res as Cliente[]);

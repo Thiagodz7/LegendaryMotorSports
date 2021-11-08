@@ -41,6 +41,6 @@ namespace LocacaoVeiculo.Models
 
         public int QtdLocacoes { get; set; }
 
-        public bool Desconto { get; set; }
+        public string Desconto { get; set; }
     }
 }

@@ -37,7 +37,7 @@ namespace LocacaoVeiculo.Models
         [Required]
         public string imgUrl { get; set; }
 
-        public bool disponibilidade { get; set; }
+        public string disponibilidade { get; set; }
 
         public string descricao { get; set; }
     }

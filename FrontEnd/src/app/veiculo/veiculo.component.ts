@@ -16,7 +16,7 @@ export class VeiculoComponent implements OnInit {
     private toastr: ToastrService) { }
 
     ngOnInit(): void {
-      this.service.refreshVeiculoList();
+      this.service.refreshList();
     }
 
     populateForm(selectedRecord: Veiculo) {
@@ -28,7 +28,7 @@ export class VeiculoComponent implements OnInit {
         this.service.deleteVeiculo(id)
           .subscribe(
             res => {
-              this.service.refreshVeiculoList();
+              this.service.refreshList();
               this.toastr.error("Deletado com Sucesso", 'Detalhe de Pagamento');
             },
             err => { console.log(err) }
@@ -36,38 +36,38 @@ export class VeiculoComponent implements OnInit {
       }
     }
 
-  onSubmit(formVeiculo: NgForm) {
-    if (this.service.formData.veiculoId == 0)
-      this.insertRecord(formVeiculo);
-    else
-      this.updateRecord(formVeiculo);
-  }
+    onSubmit(form: NgForm) {
+      if (this.service.formData.veiculoId == 0)
+        this.insertRecord(form);
+      else
+        this.updateRecord(form);
+    }
 
-  insertRecord(formVeiculo: NgForm) {
-    this.service.postVeiculo().subscribe(
-      res => {
-        this.resetForm(formVeiculo);
-        this.service.refreshVeiculoList();
-        this.toastr.success('Enviado com Sucesso!', 'Detalhe de Pagamento Registrado com Sucesso!')
-      },
-      err => { console.log(err); }
-    );
-  }
+    insertRecord(form: NgForm) {
+      this.service.postVeiculo().subscribe(
+        res => {
+          this.resetForm(form);
+          this.service.refreshList();
+          this.toastr.success('Enviado com Sucesso!', 'Detalhe de Pagamento Registrado com Sucesso!')
+        },
+        err => { console.log(err); }
+      );
+    }
 
-  updateRecord(formVeiculo: NgForm) {
-    this.service.putVeiculo().subscribe(
-      res => {
-        this.resetForm(formVeiculo);
-        this.service.refreshVeiculoList();
-        this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Pagamento Registrados!')
-      },
-      err => { console.log(err); }
-    );
-  }
+    updateRecord(form: NgForm) {
+      this.service.putVeiculo().subscribe(
+        res => {
+          this.resetForm(form);
+          this.service.refreshList();
+          this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Pagamento Registrados!')
+        },
+        err => { console.log(err); }
+      );
+    }
 
-  resetForm(formVeiculo: NgForm) {
-    formVeiculo.form.reset();
-    this.service.formData = new Veiculo();
-  }
+    resetForm(form: NgForm) {
+      form.form.reset();
+      this.service.formData = new Veiculo();
+    }
 
 }

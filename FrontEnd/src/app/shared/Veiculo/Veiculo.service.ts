@@ -8,7 +8,7 @@ import { HttpClient } from "@angular/common/http";
 export class VeiculoService {
   readonly baseURL = 'https://localhost:5001/api/Veiculos'
   formData: Veiculo = new Veiculo();
-  list: Veiculo[]|undefined;
+  list: Veiculo[]=[];
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +24,7 @@ export class VeiculoService {
     return this.http.delete(`${this.baseURL}/${id}`);
   }
 
-  refreshVeiculoList() {
+  refreshList() {
     this.http.get(this.baseURL)
       .toPromise()
       .then(res =>this.list = res as Veiculo[]);

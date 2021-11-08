@@ -4,76 +4,76 @@
 
 <div class="row">
   <div class="col-md-6">
-    <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
-      <input type="hidden" name="agendamentosId" [value]="service.formData.agendamentosId" />
-      <div class="form-group">
+    <form type="hidden" novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+      <input name="agendamentosId" [value]="service.formData.agendamentoId" />
+      <div class="form-row">
+        <div class="form-group col-md-6">
           <label>Data Locação</label>
-          <input class="form-control form-control-lg" placeholder="MM/YY" name="dataLocacao"
-              #dataLocacao="ngModel" [(ngModel)]="service.formData.dataLocacao"
-              required [class.invalid]="dataLocacao.invalid && dataLocacao.touched">
+          <input class="form-control form-control-lg" placeholder="MM/YY" name="dataLocacao" #dataLocacao="ngModel"
+            [(ngModel)]="service.formData.dataLocacao" required
+            [class.invalid]="dataLocacao.invalid && dataLocacao.touched">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Tempo Locação</label>
+          <input class="form-control form-control-lg" placeholder="Digite a quantidade de dias" name="tempoLocacao"
+            #tempoLocacao="ngModel" [(ngModel)]="service.formData.tempoLocacao" required
+            [class.invalid]="tempoLocacao.invalid && tempoLocacao.touched">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Tipo</label>
+          <input class="form-control form-control-lg" placeholder="Qual o Tipo de Veiculo?" name="tipo" #tipo="ngModel"
+            [(ngModel)]="service.formData.tipoFk" required [class.invalid]="tipo.invalid && tipo.touched">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Veiculo</label>
+          <input class="form-control form-control-lg" placeholder="Qual o Veiculo?" name="veiculoFk"
+            #veiculoFk="ngModel" [(ngModel)]="service.formData.veiculoFk" required
+            [class.invalid]="veiculoFk.invalid && veiculoFk.touched">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Cliente</label>
+          <input class="form-control form-control-lg" placeholder="Seu ID?" name="veiculoFk" #clienteFk="ngModel"
+            [(ngModel)]="service.formData.clienteFk" required [class.invalid]="clienteFk.invalid && clienteFk.touched">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Valor Final</label>
+          <input class="form-control form-control-lg" placeholder="" name="valorFinal" #valorFinal="ngModel"
+            [(ngModel)]="service.formData.valorFinal" required
+            [class.invalid]="valorFinal.invalid && valorFinal.touched">
+        </div>
       </div>
       <div class="form-group">
-        <label>Tempo Locação</label>
-        <input class="form-control form-control-lg" placeholder="Digite a quantidade de dias" name="tempoLocacao"
-            #tempoLocacao="ngModel" [(ngModel)]="service.formData.tempoLocacao"
-            required [class.invalid]="tempoLocacao.invalid && tempoLocacao.touched">
-    </div>
-    <div class="form-group">
-      <label>Tipo</label>
-      <input class="form-control form-control-lg" placeholder="Qual o Tipo de Veiculo?" name="tipo"
-          #tipo="ngModel" [(ngModel)]="service.formData.tipoFk"
-          required [class.invalid]="tipo.invalid && tipo.touched">
-  </div>
-  <div class="form-group">
-    <label>Veiculo</label>
-    <input class="form-control form-control-lg" placeholder="Qual o Veiculo?" name="veiculoFk"
-        #veiculoFk="ngModel" [(ngModel)]="service.formData.veiculoFk"
-        required [class.invalid]="veiculoFk.invalid && veiculoFk.touched">
-</div>
-<div class="form-group">
-  <label>Cliente</label>
-  <input class="form-control form-control-lg" placeholder="Seu ID?" name="veiculoFk"
-      #clienteFk="ngModel" [(ngModel)]="service.formData.clienteFk"
-      required [class.invalid]="clienteFk.invalid && clienteFk.touched">
-</div>
-<div class="form-group">
-  <label>Valor Final</label>
-  <input class="form-control form-control-lg" placeholder="" name="valorFinal"
-      #valorFinal="ngModel" [(ngModel)]="service.formData.valorFinal"
-      required [class.invalid]="valorFinal.invalid && valorFinal.touched">
-</div>
-      <div class="form-group">
-          <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Agendar</button>
+        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Agendar</button>
       </div>
-  </form>
+    </form>
   </div>
   <!-- ----------------------------- -->
   <div class="col-md-6">
-      <table class="table">
-          <thead class="thead-light">
-              <tr>
-                  <th>Data Locação</th>
-                  <th>Tempo Locação</th>
-                  <th>Tipo</th>
-                  <th>Veiculos</th>
-                  <th>Cliente</th>
-                  <th>Valor Final</th>
-                  <th></th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let ag of service.list">
-                  <td (click)="populateForm(ag)">{{ag.dataLocacao}}</td>
-                  <td (click)="populateForm(ag)">{{ag.tempoLocacao}}</td>
-                  <td (click)="populateForm(ag)">{{ag.tipoFk}}</td>
-                  <td (click)="populateForm(ag)">{{ag.veiculoFk}}</td>
-                  <td (click)="populateForm(ag)">{{ag.clienteFk}}</td>
-                  <td (click)="populateForm(ag)">{{ag.valorFinal}}</td>
-                  <td>
-                      <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(ag.agendamentosId)"></i>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Data Locação</th>
+          <th>Tempo Locação</th>
+          <th>Tipo</th>
+          <th>Veiculos</th>
+          <th>Cliente</th>
+          <th>Valor Final</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ag of service.list">
+          <td (click)="populateForm(ag)">{{ag.dataLocacao}}</td>
+          <td (click)="populateForm(ag)">{{ag.tempoLocacao}}</td>
+          <td (click)="populateForm(ag)">{{ag.tipoFk}}</td>
+          <td (click)="populateForm(ag)">{{ag.veiculoFk}}</td>
+          <td (click)="populateForm(ag)">{{ag.clienteFk}}</td>
+          <td (click)="populateForm(ag)">{{ag.valorFinal}}</td>
+          <td>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(ag.agendamentoId)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

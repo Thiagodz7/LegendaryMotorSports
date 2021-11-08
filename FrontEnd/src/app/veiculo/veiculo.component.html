@@ -4,8 +4,8 @@
 
 <div class="row">
   <div class="col-md-6">
-    <form novalidate autocomplete="off" #formVeiculo="ngForm" (submit)="onSubmit(formVeiculo)">
-      <input type="hidden" name="veiculoId" [value]="service.formData.veiculoId" />
+    <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+      <input  name="veiculoId" [value]="service.formData.veiculoId" />
       <div class="form-group">
           <label>Tipo</label>
           <input class="form-control form-control-lg" placeholder="Tipo Veiculo" name="tipoFk"
@@ -55,7 +55,7 @@
     required [class.invalid]="descricao.invalid && descricao.touched">
 </div>
       <div class="form-group">
-          <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="formVeiculo.invalid">Agendar</button>
+          <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Agendar</button>
       </div>
   </form>
   </div>

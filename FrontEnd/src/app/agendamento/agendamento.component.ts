@@ -16,7 +16,7 @@ export class AgendamentoComponent implements OnInit {
     private toastr: ToastrService) { }
 
     ngOnInit(): void {
-      this.service.refreshAgendamentoList();
+      this.service.refreshList();
     }
 
     populateForm(selectedRecord: LocacaoVeiculos) {
@@ -28,7 +28,7 @@ export class AgendamentoComponent implements OnInit {
         this.service.deleteAgendamento(id)
           .subscribe(
             res => {
-              this.service.refreshAgendamentoList();
+              this.service.refreshList();
               this.toastr.error("Deletado com Sucesso", 'Detalhe de Pagamento');
             },
             err => { console.log(err) }
@@ -37,7 +37,7 @@ export class AgendamentoComponent implements OnInit {
     }
 
   onSubmit(form: NgForm) {
-    if (this.service.formData.agendamentosId == 0)
+    if (this.service.formData.agendamentoId == 0)
       this.insertRecord(form);
     else
       this.updateRecord(form);
@@ -47,7 +47,7 @@ export class AgendamentoComponent implements OnInit {
     this.service.postAgendamento().subscribe(
       res => {
         this.resetForm(form);
-        this.service.refreshAgendamentoList();
+        this.service.refreshList();
         this.toastr.success('Enviado com Sucesso!', 'Detalhe de Pagamento Registrado com Sucesso!')
       },
       err => { console.log(err); }
@@ -58,7 +58,7 @@ export class AgendamentoComponent implements OnInit {
     this.service.putAgendamento().subscribe(
       res => {
         this.resetForm(form);
-        this.service.refreshAgendamentoList();
+        this.service.refreshList();
         this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Pagamento Registrados!')
       },
       err => { console.log(err); }

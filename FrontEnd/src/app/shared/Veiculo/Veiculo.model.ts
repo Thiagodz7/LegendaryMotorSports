@@ -6,7 +6,7 @@ export class Veiculo {
   ano: number=0;
   tipoCombustivel: string ='';
   imgUrl: string = '';
-  disponibilidade: boolean = false;
+  disponibilidade: string = '';
   descricao: string='';
 }
 
