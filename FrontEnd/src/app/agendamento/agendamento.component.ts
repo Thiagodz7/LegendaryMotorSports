@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { LocacaoVeiculos } from 'src/app/shared/Agendamento/locacao-veiculos.model';
+import { TipoVeiculo } from 'src/app/shared/Agendamento/tipo.model';
 import { LocacaoVeiculosService } from 'src/app/shared/Agendamento/locacao-veiculos.service';
 import { FormsModule } from '@angular/forms';
 
@@ -17,11 +18,18 @@ export class AgendamentoComponent implements OnInit {
 
     ngOnInit(): void {
       this.service.refreshList();
+      this.service.TpList();
+      this.service.ClienteList();
+      this.service.VcList();
     }
 
     populateForm(selectedRecord: LocacaoVeiculos) {
       this.service.formData = Object.assign({}, selectedRecord);
     }
+
+/*     populateTp(selectedRecord: TipoVeiculo) {
+      this.service.formTp = Object.assign({}, selectedRecord);
+    } */
 
     onDelete(id: number) {
       if (confirm('Tem Certeza que Deseja Deletar esse Registro?')) {
@@ -48,6 +56,7 @@ export class AgendamentoComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
+        this.service.TpList();
         this.toastr.success('Enviado com Sucesso!', 'Detalhe de Pagamento Registrado com Sucesso!')
       },
       err => { console.log(err); }
