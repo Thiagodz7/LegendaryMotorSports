@@ -17,7 +17,7 @@ export class ClienteService {
   }
 
   putCliente() {
-    return this.http.put(`${this.baseURL}/${this.formData.ClienteId}`, this.formData);
+    return this.http.put(`${this.baseURL}/${this.formData.clienteId}`, this.formData);
   }
 
   deleteCliente(id: number) {

@@ -36,37 +36,37 @@ export class ClienteComponent implements OnInit {
     }
   }
 
-  onSubmit(form: NgForm) {
-    if (this.service.formData.ClienteId == 0)
-      this.insertRecord(form);
-    else
-      this.updateRecord(form);
-  }
+onSubmit(form: NgForm) {
+  if (this.service.formData.clienteId == 0)
+    this.insertRecord(form);
+  else
+    this.updateRecord(form);
+}
 
-  insertRecord(form: NgForm) {
-    this.service.postCliente().subscribe(
-      res => {
-        this.resetForm(form);
-        this.service.refreshList();
-        this.toastr.success('Enviado com Sucesso!', 'Detalhe de Pagamento Registrado com Sucesso!')
-      },
-      err => { console.log(err); }
-    );
-  }
+insertRecord(form: NgForm) {
+  this.service.postCliente().subscribe(
+    res => {
+      this.resetForm(form);
+      this.service.refreshList();
+      this.toastr.success('Enviado com Sucesso!', 'Detalhe de Pagamento Registrado com Sucesso!')
+    },
+    err => { console.log(err); }
+  );
+}
 
-  updateRecord(form: NgForm) {
-    this.service.putCliente().subscribe(
-      res => {
-        this.resetForm(form);
-        this.service.refreshList();
-        this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Pagamento Registrados!')
-      },
-      err => { console.log(err); }
-    );
-  }
+updateRecord(form: NgForm) {
+  this.service.putCliente().subscribe(
+    res => {
+      this.resetForm(form);
+      this.service.refreshList();
+      this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Pagamento Registrados!')
+    },
+    err => { console.log(err); }
+  );
+}
 
-  resetForm(form: NgForm) {
-    form.form.reset();
-    this.service.formData = new Cliente();
-  }
+resetForm(form: NgForm) {
+  form.form.reset();
+  this.service.formData = new Cliente();
+}
 }

@@ -3,64 +3,66 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6">
-    <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+  <div class="col-md-12">
+    <form type="hidden" novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
       <input  name="veiculoId" [value]="service.formData.veiculoId" />
-      <div class="form-group">
+      <div class="form-row">
+        <div class="form-group col-md-6">
           <label>Tipo</label>
           <input class="form-control form-control-lg" placeholder="Tipo Veiculo" name="tipoFk"
               #tipoFk="ngModel" [(ngModel)]="service.formData.tipoFk"
               required [class.invalid]="tipoFk.invalid && tipoFk.touched">
-      </div>
-      <div class="form-group">
+        </div>
+        <div class="form-group col-md-6">
         <label>Nome Veículo</label>
         <input class="form-control form-control-lg" placeholder="" name="nome"
             #nome="ngModel" [(ngModel)]="service.formData.nome"
             required [class.invalid]="nome.invalid && nome.touched">
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <label>Placa</label>
       <input class="form-control form-control-lg" placeholder="" name="placa"
           #placa="ngModel" [(ngModel)]="service.formData.placa"
           required [class.invalid]="placa.invalid && placa.touched">
   </div>
-  <div class="form-group">
+  <div class="form-group col-md-6">
     <label>Ano</label>
     <input class="form-control form-control-lg" placeholder="Qual o Tipo de Veiculo?" name="ano"
         #ano="ngModel" [(ngModel)]="service.formData.ano"
         required [class.invalid]="ano.invalid && ano.touched">
 </div>
-<div class="form-group">
+<div class="form-group col-md-6">
   <label>Tipo Combustível</label>
   <input class="form-control form-control-lg" placeholder="Qual o Tipo de Veiculo?" name="tipoCombustivel"
       #tipoCombustivel="ngModel" [(ngModel)]="service.formData.tipoCombustivel"
       required [class.invalid]="tipoCombustivel.invalid && tipoCombustivel.touched">
 </div>
-<div class="form-group">
+<div class="form-group col-md-6">
   <label>imgURL</label>
   <input class="form-control form-control-lg" placeholder="Qual o Tipo de Veiculo?" name="imgUrl"
       #imgUrl="ngModel" [(ngModel)]="service.formData.imgUrl"
       required [class.invalid]="imgUrl.invalid && imgUrl.touched">
 </div>
-<div class="form-group">
+<div class="form-group col-md-6">
   <label>Disponibilidade</label>
   <input class="form-control form-control-lg" placeholder="" name="disponibilidade"
       #disponibilidade="ngModel" [(ngModel)]="service.formData.disponibilidade"
       required [class.invalid]="disponibilidade.invalid && disponibilidade.touched">
 </div>
-<div class="form-group">
+<div class="form-group col-md-6">
 <label>Decrição</label>
 <input class="form-control form-control-lg" placeholder="" name="descricao"
     #descricao="ngModel" [(ngModel)]="service.formData.descricao"
     required [class.invalid]="descricao.invalid && descricao.touched">
 </div>
-      <div class="form-group">
+</div>
+<div class="form-group col-md-6">
           <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Agendar</button>
       </div>
   </form>
   </div>
   <!-- ----------------------------- -->
-  <div class="col-md-6">
+  <div class="col-md-12">
       <table class="table">
           <thead class="thead-light">
               <tr>
