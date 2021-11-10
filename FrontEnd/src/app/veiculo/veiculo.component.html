@@ -1,57 +1,59 @@
-<div class="jumbotron py-3">
-  <h1 class="display-4 text-center">Veiculos</h1>
-</div>
-
 <div class="row">
-  <div class="col-md-12">
+  <div class="container col-md-11">
+    <br>
+    <br>
+    <br>
+    <div class="jumbotron py-3">
+      <h1 class="display-4 text-center">Veiculos</h1>
+    </div>
     <form type="hidden" novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
       <input  name="veiculoId" [value]="service.formData.veiculoId" />
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Tipo</label>
-          <input class="form-control form-control-lg" placeholder="Tipo Veiculo" name="tipoFk"
+          <input class="form-control form-control-lg" placeholder="Tipo do Veículo" name="tipoFk" type="text" pattern= "[0-9]"
               #tipoFk="ngModel" [(ngModel)]="service.formData.tipoFk"
               required [class.invalid]="tipoFk.invalid && tipoFk.touched">
         </div>
         <div class="form-group col-md-6">
         <label>Nome Veículo</label>
-        <input class="form-control form-control-lg" placeholder="" name="nome"
+        <input class="form-control form-control-lg" placeholder="" name="Digite o Nome do Veículo" type="text"
             #nome="ngModel" [(ngModel)]="service.formData.nome"
             required [class.invalid]="nome.invalid && nome.touched">
     </div>
     <div class="form-group col-md-6">
       <label>Placa</label>
-      <input class="form-control form-control-lg" placeholder="" name="placa"
+      <input class="form-control form-control-lg" placeholder="XXX-0000" name="placa" type="text" pattern="[A-Za-z]{3}-[0-9]{4}"
           #placa="ngModel" [(ngModel)]="service.formData.placa"
           required [class.invalid]="placa.invalid && placa.touched">
   </div>
   <div class="form-group col-md-6">
     <label>Ano</label>
-    <input class="form-control form-control-lg" placeholder="Qual o Tipo de Veiculo?" name="ano"
+    <input class="form-control form-control-lg" placeholder="Informe o Ano do Veículo" name="ano" type="text" pattern="[0-9]{4}"
         #ano="ngModel" [(ngModel)]="service.formData.ano"
         required [class.invalid]="ano.invalid && ano.touched">
 </div>
 <div class="form-group col-md-6">
   <label>Tipo Combustível</label>
-  <input class="form-control form-control-lg" placeholder="Qual o Tipo de Veiculo?" name="tipoCombustivel"
+  <input class="form-control form-control-lg" placeholder="Informe o Tipo de Combustível" name="tipoCombustivel" type="text"
       #tipoCombustivel="ngModel" [(ngModel)]="service.formData.tipoCombustivel"
       required [class.invalid]="tipoCombustivel.invalid && tipoCombustivel.touched">
 </div>
 <div class="form-group col-md-6">
   <label>imgURL</label>
-  <input class="form-control form-control-lg" placeholder="Qual o Tipo de Veiculo?" name="imgUrl"
+  <input class="form-control form-control-lg" placeholder="Selecione uma Imagem" name="imgUrl"
       #imgUrl="ngModel" [(ngModel)]="service.formData.imgUrl"
       required [class.invalid]="imgUrl.invalid && imgUrl.touched">
 </div>
 <div class="form-group col-md-6">
   <label>Disponibilidade</label>
-  <input class="form-control form-control-lg" placeholder="" name="disponibilidade"
+  <input class="form-control form-control-lg" placeholder="Disponibilidade do Veículo" name="disponibilidade"
       #disponibilidade="ngModel" [(ngModel)]="service.formData.disponibilidade"
       required [class.invalid]="disponibilidade.invalid && disponibilidade.touched">
 </div>
 <div class="form-group col-md-6">
 <label>Decrição</label>
-<input class="form-control form-control-lg" placeholder="" name="descricao"
+<input class="form-control form-control-lg" placeholder="Descrição do Veículo" name="descricao" type="text"
     #descricao="ngModel" [(ngModel)]="service.formData.descricao"
     required [class.invalid]="descricao.invalid && descricao.touched">
 </div>
@@ -62,19 +64,19 @@
   </form>
   </div>
   <!-- ----------------------------- -->
-  <div class="col-md-12">
+  <div class="container col-md-11">
       <table class="table">
-          <thead class="thead-light">
+          <thead>
               <tr>
-                  <th>Tipo</th>
-                  <th>Nome</th>
-                  <th>Placa</th>
-                  <th>Ano</th>
-                  <th>Tipo Combustível</th>
-                  <th>Imagem</th>
-                  <th>Disponibilidade</th>
-                  <th>Descrição</th>
-                  <th></th>
+                  <th style="border-color: rgb(255, 0, 0);">Tipo</th>
+                  <th style="border-color: rgb(255, 0, 0);">Nome</th>
+                  <th style="border-color: rgb(255, 0, 0);">Placa</th>
+                  <th style="border-color: rgb(255, 0, 0);">Ano</th>
+                  <th style="border-color: rgb(255, 0, 0);">Tipo Combustível</th>
+                  <th style="border-color: rgb(255, 0, 0);">Imagem</th>
+                  <th style="border-color: rgb(255, 0, 0);">Disponibilidade</th>
+                  <th style="border-color: rgb(255, 0, 0);">Descrição</th>
+                  <th style="border-color: rgb(255, 0, 0);"></th>
               </tr>
           </thead>
           <tbody>
@@ -95,3 +97,6 @@
       </table>
   </div>
 </div>
+<br>
+<br>
+<br>

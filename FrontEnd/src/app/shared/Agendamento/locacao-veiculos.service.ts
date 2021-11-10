@@ -9,9 +9,9 @@ import { Cliente } from '../Cliente/Cliente.model';
   providedIn: 'root'
 })
 export class LocacaoVeiculosService {
+
   readonly baseURL = 'https://localhost:5001/api/Agendamentos'
   formData: LocacaoVeiculos = new LocacaoVeiculos();
-
   list: LocacaoVeiculos[]=[];
 
   readonly baseTp = 'https://localhost:5001/api/Tipos'

@@ -27,9 +27,14 @@ export class AgendamentoComponent implements OnInit {
       this.service.formData = Object.assign({}, selectedRecord);
     }
 
-/*     populateTp(selectedRecord: TipoVeiculo) {
+    populateTp(selectedRecord: TipoVeiculo) {
       this.service.formTp = Object.assign({}, selectedRecord);
-    } */
+    }
+
+    getTipoId(){
+      let cmbTipo = (<HTMLSelectElement>document.getElementById("cmbTipo")).value;
+      this.service.formTp.tipoId = Number(cmbTipo);
+    }
 
     onDelete(id: number) {
       if (confirm('Tem Certeza que Deseja Deletar esse Registro?')) {

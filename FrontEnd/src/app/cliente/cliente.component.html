@@ -1,52 +1,56 @@
-<div class="jumbotron py-3">
-  <h1 class="display-4 text-center">Clientes</h1>
-</div>
+
 
 <div class="row">
-  <div class="col-md-6">
+  <div class=" container col-md-11">
+    <br>
+    <br>
+    <br>
+    <div class="jumbotron py-3">
+      <h1 class="display-4 text-center">Clientes</h1>
+    </div>
     <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
-      <input name="ClienteId" [value]="service.formData.clienteId" />
+      <input type="hidden" name="ClienteId" [value]="service.formData.clienteId" />
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Nome</label>
-          <input class="form-control form-control-lg" placeholder="digite seu nome" name="nome" #nome="ngModel"
+          <input class="form-control form-control-lg" placeholder="Digite seu Nome" name="nome" pattern="[a-zA-Z]{3,50}" type="text" title="teste" id="nome" #nome="ngModel"
             [(ngModel)]="service.formData.nome" required [class.invalid]="nome.invalid && nome.touched">
           </div>
           <div class="form-group col-md-6">
           <label>CPF</label>
-          <input class="form-control form-control-lg" placeholder="---.---.---.--" name="cpf" #cpf="ngModel"
+          <input class="form-control form-control-lg" placeholder="xxx.xxx.xxx.xx" name="cpf" type="text" pattern="[0-9]{11}" #cpf="ngModel"
             [(ngModel)]="service.formData.cpf" required [class.invalid]="cpf.invalid && cpf.touched">
           </div>
             <div class="form-group col-md-6">
             <label>CNH</label>
-          <input class="form-control form-control-lg" placeholder="-----------" name="cnh" #cnh="ngModel"
+          <input class="form-control form-control-lg" placeholder="xxxxxxxxxx.x" name="cnh" type="text" pattern="[0-9]{11}" #cnh="ngModel"
             [(ngModel)]="service.formData.cnh" required [class.invalid]="cnh.invalid && cnh.touched">
           </div>
             <div class="form-group col-md-6">
           <label>Endereço</label>
-          <input class="form-control form-control-lg" placeholder="Digite seu Endereço" name="Endereco"
+          <input class="form-control form-control-lg" placeholder="Digite seu Endereço" name="Endereco" type="text"
             #Endereco="ngModel" [(ngModel)]="service.formData.endereco" required
             [class.invalid]="Endereco.invalid && Endereco.touched">
           </div>
             <div class="form-group col-md-6">
           <label>Telefone</label>
-          <input class="form-control form-control-lg" placeholder="(--)----- ----" name="telefone" #telefone="ngModel"
+          <input class="form-control form-control-lg" placeholder="(xx)xxxxx-xxxx" name="telefone" type="text" pattern="[0-9]{8,20}" #telefone="ngModel"
             [(ngModel)]="service.formData.telefone" required [class.invalid]="telefone.invalid && telefone.touched">
           </div>
             <div class="form-group col-md-6">
           <label>Email</label>
-          <input class="form-control form-control-lg" placeholder="exemplo@email.com" name="email" #email="ngModel"
+          <input class="form-control form-control-lg" placeholder="exemplo@email.com" name="email" type="email" #email="ngModel"
             [(ngModel)]="service.formData.email" required [class.invalid]="email.invalid && email.touched">
           </div>
             <div class="form-group col-md-6">
           <label>Data de Nascimento</label>
-          <input class="form-control form-control-lg" placeholder="AA/MM/DD" name="dataNascimento"
+          <input class="form-control form-control-lg" placeholder="DD/MM/AAAA" name="dataNascimento" type="date"
             #dataNascimento="ngModel" [(ngModel)]="service.formData.dataNascimento" required
             [class.invalid]="dataNascimento.invalid && dataNascimento.touched">
           </div>
             <div class="form-group col-md-6">
           <label>Quantidade de Locações</label>
-          <input class="form-control form-control-lg" placeholder="Digite a quantidade de locações" name="qtdLocacoes"
+          <input class="form-control form-control-lg" placeholder="Digite a quantidade de locações" name="qtdLocacoes" type="number"
             #qtdLocacoes="ngModel" [(ngModel)]="service.formData.qtdLocacoes" required
             [class.invalid]="qtdLocacoes.invalid && qtdLocacoes.touched">
             <div class="form-group col-md-6">
@@ -62,20 +66,21 @@
       </div>
     </form>
   </div>
-  <!-- ----------------------------- -->
-  <div class="col-md-6">
+  <!-- -------------------------------------------------------------------------------------------------------- -->
+  <div class=" container col-md-11">
     <table class="table">
-      <thead class="thead-light">
+      <thead>
         <tr>
-          <th>Nome</th>
-          <th>Cpf</th>
-          <th>Cnh</th>
-          <th>Endereço</th>
-          <th>Telefone</th>
-          <th>Email</th>
-          <th>Data de Nascimento</th>
-          <th>Quantidade de Locações</th>
-          <th>Desconto</th>
+          <th style="border-color: rgb(255, 0, 0);">Nome</th>
+          <th style="border-color: rgb(255, 0, 0);">Cpf</th>
+          <th style="border-color: rgb(255, 0, 0);">Cnh</th>
+          <th style="border-color: rgb(255, 0, 0);">Endereço</th>
+          <th style="border-color: rgb(255, 0, 0);">Telefone</th>
+          <th style="border-color: rgb(255, 0, 0);">Email</th>
+          <th style="border-color: rgb(255, 0, 0);">Data de Nascimento</th>
+          <th style="border-color: rgb(255, 0, 0);">Quantidade de Locações</th>
+          <th style="border-color: rgb(255, 0, 0);">Desconto</th>
+          <th style="border-color: rgb(255, 0, 0);"></th>
         </tr>
       </thead>
       <tbody>
@@ -97,3 +102,6 @@
     </table>
   </div>
 </div>
+<br>
+<br>
+<br>

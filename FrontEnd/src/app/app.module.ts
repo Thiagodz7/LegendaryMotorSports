@@ -10,13 +10,15 @@ import { AgendamentoComponent } from './agendamento/agendamento.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { VeiculoDetailComponent } from './veiculo/veiculo-details/veiculo-detail/veiculo-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VeiculoComponent,
     ClienteComponent,
-    AgendamentoComponent
+    AgendamentoComponent,
+    VeiculoDetailComponent
   ],
 
   imports: [

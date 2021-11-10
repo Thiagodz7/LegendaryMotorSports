@@ -1,0 +1,67 @@
+<div class="col-md-12">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>
+          Veiculos
+        </th>
+        <th>
+          {{this.service2.formData.veiculoFk}}
+        </th>
+        <th>
+          <input type="text">
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let vc of service.list">
+      <div *ngFor="let tp of service2.listaTp">
+        <tr *ngIf="vc.tipoFk == tp.tipoId; else elseTipo">
+
+          <td *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+            <div *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+              {{tp.tipo}}
+            </div>
+          </td>
+
+          <!-- TERMINAR A LÓGICA DESSA PARTE -->
+          <td *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+            <div *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+
+                     <div (click)="getveiculoId()">
+                    <label id="cmbVeiculoId" class="btn btn-info btn-sm" style="width: 10;">
+                      {{vc.veiculoId}}
+                    </label>
+                    <label *ngIf="this.service.formData.veiculoId == this.service2.formData.veiculoFk">{{vc.veiculoId}}</label>
+                   </div>
+
+            </div>
+          </td>
+          <!-- ----------------------------------------------------------------------------- -->
+
+          <td *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+            <div *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+              {{vc.nome}}
+            </div>
+          </td>
+
+          <td *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+            <div *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+              {{vc.imgUrl}}
+            </div>
+          </td>
+
+          <td *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+            <div *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+              {{vc.disponibilidade}}
+            </div>
+          </td>
+
+        </tr>
+        <ng-template #elseTipo>
+
+        </ng-template>
+      </div>
+    </tbody>
+  </table>
+</div>
