@@ -1,10 +1,15 @@
+<style>
+  .table td:hover {
+  background-color: #940000;
+  cursor: pointer;}
+</style>
 <div class="row">
   <div class="container col-md-11">
     <br>
     <br>
     <br>
-    <div class="jumbotron py-3">
-      <h1 class="display-4 text-center">Agendamentos</h1>
+    <div class="jumbotron py-3 fundoJumb">
+      <h1 class="display-4 text-center TextJumb">Agendamentos</h1>
     </div>
 
     <form type="hidden" novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
@@ -27,8 +32,9 @@
 
         <div class="form-group col-md-12">
           <label for="tipo">Tipo</label>
-          <select (click)="getTipoId()" id="cmbTipo" name="tipo" type="text" pattern="[0-9]" #tipo="ngModel"
+          <select class="form-select" aria-label="Default select example" (click)="getTipoId()" id="cmbTipo" name="tipo" type="text" pattern="[0-9]" #tipo="ngModel"
             [(ngModel)]="service.formData.tipoFk" required [class.invalid]="tipo.invalid && tipo.touched">
+            <option selected>Selecione um tipo</option>
             <option *ngFor="let tp of service.listaTp" value="{{tp.tipoId}}">
               {{tp.tipo}}
             </option>
@@ -67,8 +73,8 @@
 <!-- ------------------------------------------------------------------------------------------------------ -->
 <div class="container col-md-11">
   <table class="table">
-    <thead>
-      <tr style="background-color: rgb(255, 0, 0);" >
+    <thead style="background-color: rgb(255, 0, 0);">
+      <tr>
         <th style="font-family: Impact; border-color: rgb(255, 0, 0); color: white">Data Locação</th>
         <th style="font-family: Impact; border-color: rgb(255, 0, 0); color: white">Tempo Locação</th>
         <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white">Tipo</th>
@@ -78,30 +84,30 @@
         <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white"></th>
       </tr>
     </thead>
-    <tbody style="background-color: rgb(0, 0, 0);">
+    <tbody>
       <tr *ngFor="let ag of service.list">
-        <td style="font-family: Impact; color:white" (click)="populateForm(ag)">{{ag.dataLocacao}}</td>
-        <td style="font-family: Impact; color:white" (click)="populateForm(ag)">{{ag.tempoLocacao}}</td>
+        <td  (click)="populateForm(ag)">{{ag.dataLocacao}}</td>
+        <td (click)="populateForm(ag)">{{ag.tempoLocacao}}</td>
 
-        <td style="font-family: Impact; color:white">
+        <td >
           <div *ngFor="let tp of service.listaTp">
             <div *ngIf="ag.tipoFk == tp.tipoId">{{tp.tipo}}</div>
           </div>
         </td>
 
-        <td style="font-family: Impact; color:white">
+        <td >
           <div *ngFor="let cl of service.listaCl">
             <div *ngIf="ag.clienteFk == cl.clienteId">{{cl.nome}}</div>
           </div>
         </td>
 
-        <td style="font-family: Impact; color:white">
+        <td >
           <div *ngFor="let vc of service.listaVc">
             <div *ngIf="ag.veiculoFk == vc.veiculoId">{{vc.nome}}</div>
           </div>
         </td>
 
-        <td style="font-family: Impact; color:white" (click)="populateForm(ag)">{{ag.valorFinal}}</td>
+        <td (click)="populateForm(ag)">{{ag.valorFinal}}</td>
         <td>
           <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(ag.agendamentoId)"></i>
         </td>

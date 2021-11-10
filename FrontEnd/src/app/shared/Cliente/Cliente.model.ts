@@ -1,12 +1,12 @@
 export class Cliente {
-    clienteId: number=0;
+    clienteId: number = 0;
     nome: string='';
-    cpf: number=0;
-    cnh: number=0;
+    cpf: number|undefined;
+    cnh: number|undefined;
     endereco: string='';
-    telefone: number=0;
+    telefone: number|undefined;
     email: string='';
     dataNascimento: string = '';
-    qtdLocacoes: number=0;
+    qtdLocacoes: number|undefined;
     desconto: string = 'false';
 }

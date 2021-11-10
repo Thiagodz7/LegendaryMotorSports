@@ -16,8 +16,8 @@ thead th{
   font-weight: 400;
 }
 
-table tbody tr:hover {
-  background-color: #fffbf2;
+.table td:hover {
+  background-color: #66231e;
   cursor: pointer;
 }
 

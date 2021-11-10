@@ -3,9 +3,20 @@
     background: rgb(0,0,0);
       background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(114,113,140,1) 51%, rgba(46,46,46,1) 99%);
   }
+  .fundoTabela{
+    background-color: rgb(255, 0, 0);
+  }
+  .wrapper{
+    position: relative;
+  }
+  #infoi {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-dark " id="infoi">
   <div class="container">
       <a class="navbar-brand" href="#page-top"><h5>Locação</h5></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,17 +32,22 @@
       </div>
   </div>
 </nav>
-<div>
-<img class="img-fluid" src="assets/banne.png" alt="">
+<br>
+<br>
+<br>
+<div id="infoi">
+  <img class="img-fluid" src="assets/banne.png" alt="">
 </div>
-<br>
-<br>
-<br>
-<div class="container">
+
+<div class="container wrapper">
+
   <body style="background-color: rgb(36, 35, 35);">
     <router-outlet></router-outlet>
   </body>
+
 </div>
+
+
 <br>
 <br>
 <br>

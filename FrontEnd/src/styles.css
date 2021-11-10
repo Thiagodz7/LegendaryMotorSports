@@ -2,6 +2,14 @@
   color: grey;
 }
 
+.fundoJumb{
+  background-color: #ff1100;
+}
+
+.TextJumb{
+  color: #ffffff;
+}
+
 .form-group input {
   font-weight: 500;
 }
@@ -16,7 +24,11 @@ thead th{
 }
 
 table tr:hover {
-  background-color: #fffbf2;
+  background-color: #66231e;
+  cursor: pointer;
+}
+.table td:hover {
+  background-color: #940000;
   cursor: pointer;
 }
 

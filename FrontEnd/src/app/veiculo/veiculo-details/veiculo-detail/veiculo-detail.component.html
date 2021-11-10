@@ -1,15 +1,22 @@
+<style>
+  table tr:hover {
+  background-color: #363535;
+  cursor: pointer;
+}
+</style>
+
 <div class="col-md-12">
   <table class="table">
-    <thead class="thead-light">
+    <thead class="fundoTabela">
       <tr>
-        <th>
-          Veiculos | ID: {{this.service2.formData.veiculoFk}}
+        <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white">
+          Selecione seu Veiculo | ID: {{this.service2.formData.veiculoFk}}
         </th>
       </tr>
     </thead>
     <tbody *ngFor="let vc of service.list">
       <div *ngFor="let tp of service2.listaTp">
-        <tr *ngIf="vc.tipoFk == tp.tipoId; else elseTipo">
+        <tr style="border-color: rgb(255, 0, 0);" *ngIf="vc.tipoFk == tp.tipoId; else elseTipo">
 
           <td *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
             <div *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
@@ -17,7 +24,7 @@
             </div>
           </td>
 
-          <!-- FINALIZADA DIA 10-11-2021 -->
+          <!-- FUNÇÃO FINALIZADA DIA 10-11-2021 -->
           <td *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
             <div *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
               <div (click)="populateForm(vc)">
