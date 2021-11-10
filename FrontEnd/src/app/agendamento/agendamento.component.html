@@ -37,9 +37,9 @@
 
         <div class="form-group col-md-12">
           <div class="container">
-            <input type="hidden" class="form-control form-control-lg" name="veiculoFk" #veiculoFk="ngModel"
+            <input type="hidden"  class="form-control form-control-lg" name="veiculoFk" #veiculoFk="ngModel"
               [(ngModel)]="service.formData.veiculoFk" required [class.invalid]="veiculoFk.invalid && veiculoFk.touched"
-              value="{{this.veiculoFk}}">
+              value="{{veiculoFk}}">
             <app-veiculo-detail></app-veiculo-detail>
           </div>
         </div>

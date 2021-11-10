@@ -15,8 +15,6 @@ import { AgendamentoComponent } from 'src/app/agendamento/agendamento.component'
 })
 export class VeiculoDetailComponent implements OnInit {
 
-  /* cmbVeiculo:number=0; */
-
   constructor(public service: VeiculoService ,
     private toastr: ToastrService, public service2: LocacaoVeiculosService) { }
 
@@ -24,7 +22,6 @@ export class VeiculoDetailComponent implements OnInit {
   ngOnInit(): void {
     this.service.refreshList();
      this.service2.TpList();
-     /* this.getveiculoId(); */
   }
 
   getTipoId(){
@@ -32,10 +29,11 @@ export class VeiculoDetailComponent implements OnInit {
     this.service2.formTp.tipoId = Number(cmbTipo);
   }
 
-
-  getveiculoId(){
-    let cmbVeiculo = (<HTMLLabelElement>document.getElementById("cmbVeiculoId")).textContent;
-    this.service2.formData.veiculoFk = Number(cmbVeiculo);
-    return cmbVeiculo
+  populateForm(selectedRecord: Veiculo) {
+    this.service.formData = Object.assign({}, selectedRecord);
+    this.service2.formData.veiculoFk = this.service.formData.veiculoId
   }
+
+
+
 }
