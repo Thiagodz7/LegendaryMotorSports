@@ -7,6 +7,6 @@ export class Cliente {
     telefone: number|undefined;
     email: string='';
     dataNascimento: string = '';
-    qtdLocacoes: number|undefined;
-    desconto: string = 'false';
+    qtdLocacoes: number = 0;
+    desconto: string = 'não';
 }

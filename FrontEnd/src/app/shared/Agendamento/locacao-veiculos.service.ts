@@ -32,6 +32,10 @@ export class LocacaoVeiculosService {
     return this.http.post(this.baseURL, this.formData);
   }
 
+  putCliente() {
+    return this.http.put(`${this.baseURL}/${this.formCl.clienteId}`, this.formCl);
+  }
+
   putAgendamento() {
     return this.http.put(`${this.baseURL}/${this.formData.agendamentoId}`, this.formData);
   }

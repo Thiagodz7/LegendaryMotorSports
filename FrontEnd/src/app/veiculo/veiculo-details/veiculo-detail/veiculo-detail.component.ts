@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵqueryRefresh } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Veiculo } from 'src/app/shared/Veiculo/Veiculo.model';
 import { VeiculoService } from 'src/app/shared/Veiculo/Veiculo.service';
@@ -36,6 +36,7 @@ export class VeiculoDetailComponent implements OnInit {
     if(this.service.formData.disponibilidade == "true")
     {
       this.service2.formData.veiculoFk = this.service.formData.veiculoId
+
     }
     else{
       this.toastr.error('Veículo Indisponível', 'Detalhes de Agendamentos Falhou:')

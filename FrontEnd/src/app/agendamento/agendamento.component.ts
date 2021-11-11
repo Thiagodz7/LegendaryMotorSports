@@ -5,6 +5,11 @@ import { LocacaoVeiculos } from 'src/app/shared/Agendamento/locacao-veiculos.mod
 import { TipoVeiculo } from 'src/app/shared/Agendamento/tipo.model';
 import { LocacaoVeiculosService } from 'src/app/shared/Agendamento/locacao-veiculos.service';
 import { FormsModule } from '@angular/forms';
+import { Cliente } from '../shared/Cliente/Cliente.model';
+import { ClienteService } from '../shared/Cliente/Cliente.service';
+import { VeiculoService } from '../shared/Veiculo/Veiculo.service';
+import { Veiculo } from '../shared/Veiculo/Veiculo.model';
+
 
 @Component({
   selector: 'app-agendamento',
@@ -13,8 +18,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class AgendamentoComponent implements OnInit {
 
-  constructor(public service: LocacaoVeiculosService ,
-    private toastr: ToastrService) { }
+  constructor(public service: LocacaoVeiculosService , public serviceCliente: ClienteService,
+    public serviceVeiculo: VeiculoService, private toastr: ToastrService) { }
 
     ngOnInit(): void {
       this.service.refreshList();
@@ -28,6 +33,10 @@ export class AgendamentoComponent implements OnInit {
     populateForm(selectedRecord: LocacaoVeiculos) {
       this.service.formData = Object.assign({}, selectedRecord);
 
+    }
+
+    populateCliente(selectedRecord: Cliente) {
+      this.serviceCliente.formData = Object.assign({}, selectedRecord);
     }
 
     populateTp(selectedRecord: TipoVeiculo) {
@@ -55,22 +64,61 @@ export class AgendamentoComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (this.service.formData.agendamentoId == 0)
+    {
       this.insertRecord(form);
-    else
+    }
+    else{
       this.updateRecord(form);
+    }
   }
 
   insertRecord(form: NgForm) {
     this.service.postAgendamento().subscribe(
       res => {
         this.resetForm(form);
+        this.resetVeiculo(form);
         this.service.refreshList();
         this.service.TpList();
         this.toastr.success('Enviado com Sucesso!', 'Detalhe de Agendamento Registrado com Sucesso!')
-        if(this.service.formCl.qtdLocacoes == 5){
 
-          /* this.service.listaCl. */
+        /* FUNÇÃO PARA ITERAR QUANTIDADE DE LOCAÇÃO E ATRIVUIR UM DESCONTO AO CLIENTE */
+        if(this.serviceCliente.formData.qtdLocacoes >= 0 && this.serviceCliente.formData.qtdLocacoes < 5 ){
+          this.serviceCliente.formData.qtdLocacoes = this.serviceCliente.formData.qtdLocacoes + 1;
+          this.serviceCliente.formData.desconto = 'não'
+
+         this.serviceCliente.putCliente().subscribe(
+           res => {
+             this.resetCliente(form);
+             this.serviceCliente.refreshList();
+             this.toastr.info('Promoção Iterada', 'Faltam: '+ this.serviceCliente.formData.qtdLocacoes + ' de: 5')
+           },
+           err => { console.log(err); }
+        );
         }
+        else if(this.serviceCliente.formData.qtdLocacoes == 5){
+         this.serviceCliente.formData.qtdLocacoes = this.serviceCliente.formData.qtdLocacoes - 5;
+         this.serviceCliente.formData.desconto = 'sim'
+         this.serviceCliente.putCliente().subscribe(
+           res => {
+             this.resetCliente(form);
+             this.serviceCliente.refreshList();
+             this.toastr.info('Parabéns, ganhou 10% de Desconto!')
+           },
+           err => { console.log(err); }
+        );
+        }
+        else if(this.serviceCliente.formData.qtdLocacoes == 0){
+          this.serviceCliente.formData.desconto = 'não'
+          this.serviceCliente.putCliente().subscribe(
+            res => {
+              this.resetCliente(form);
+              this.serviceCliente.refreshList();
+              this.toastr.info('Promoção Reiniciada', 'Faltam: '+ this.serviceCliente.formData.qtdLocacoes + ' de: 5' )
+            },
+            err => { console.log(err); }
+         );
+        }
+        /* ------------------------------------------------------------------------- */
       },
       err => { console.log(err); }
     );
@@ -87,9 +135,19 @@ export class AgendamentoComponent implements OnInit {
     );
   }
 
+  resetCliente(form: NgForm) {
+    form.form.reset();
+    this.serviceCliente.formData = new Cliente();
+  }
+
   resetForm(form: NgForm) {
     form.form.reset();
     this.service.formData = new LocacaoVeiculos();
+  }
+
+  resetVeiculo(form: NgForm) {
+    form.form.reset();
+    this.serviceVeiculo.formData = new Veiculo();
   }
 
 }
