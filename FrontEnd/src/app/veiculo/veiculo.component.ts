@@ -3,6 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { Veiculo } from 'src/app/shared/Veiculo/Veiculo.model';
 import { VeiculoService } from 'src/app/shared/Veiculo/Veiculo.service';
+import { TipoVeiculo } from 'src/app/shared/Agendamento/tipo.model';
+import { LocacaoVeiculosService } from 'src/app/shared/Agendamento/locacao-veiculos.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,15 +14,24 @@ import { FormsModule } from '@angular/forms';
 })
 export class VeiculoComponent implements OnInit {
 
-  constructor(public service: VeiculoService ,
+  constructor(public service: VeiculoService ,public service2: LocacaoVeiculosService,
     private toastr: ToastrService) { }
 
+    widthImg: number = 100;
+    marginImg: number = 2;
+
     ngOnInit(): void {
-      this.service.refreshList();
+      this.service2.refreshList();
+      this.service2.TpList();
     }
 
     populateForm(selectedRecord: Veiculo) {
       this.service.formData = Object.assign({}, selectedRecord);
+    }
+
+    gettipoFk(){
+      let cmbTipo = (<HTMLSelectElement>document.getElementById("cmbTipoVC")).value;
+      this.service.formTp.tipoId = Number(cmbTipo);
     }
 
     onDelete(id: number) {
@@ -69,5 +80,4 @@ export class VeiculoComponent implements OnInit {
       form.form.reset();
       this.service.formData = new Veiculo();
     }
-
 }

@@ -1,102 +1,119 @@
-<body style="background-color: rgb(36, 35, 35);">
-<div class="row">
-  <div class="container col-md-11">
-    <br>
-    <br>
-    <br>
-    <div class="jumbotron py-3 fundoJumb">
-      <h1 class="display-4 text-center TextJumb">Veiculos</h1>
+<br>
+<br>
+<body style="background-color: rgb(36, 35, 35);border-radius: 1rem;">
+  <div class="row">
+    <div class="container col-md-11">
+      <br>
+      <br>
+      <br>
+      <div class="jumbotron py-3 fundoJumb">
+        <h1 class="display-4 text-center TextJumb">Veiculos</h1>
+      </div>
+      <form type="hidden" novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+        <input type="hidden" name="veiculoId" [value]="service.formData.veiculoId" />
+        <div class="form-row">
+
+          <div class="form-group col-md-6">
+            <label type="hidden">{{this.service.formData.tipoFk}}</label>
+            <div class="form-group col-md-12">
+              <label for="tipo">Tipo: </label>
+              <select class="form-select" aria-label="Default select example" (click)="gettipoFk()" id="cmbTipoVC"
+                name="tipo" type="text" pattern="[0-9]" #tipo="ngModel" [(ngModel)]="service.formData.tipoFk" required
+                [class.invalid]="tipo.invalid && tipo.touched">
+                <option selected>Selecione um tipo</option>
+                <option *ngFor="let tp of service2.listaTp" value="{{tp.tipoId}}">
+                  {{tp.tipo}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label>Nome Veículo</label>
+            <input class="form-control form-control-lg" placeholder="Digite o Nome do Veículo" name="nome" type="text"
+              #nome="ngModel" [(ngModel)]="service.formData.nome" required
+              [class.invalid]="nome.invalid && nome.touched">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Placa</label>
+            <input class="form-control form-control-lg" placeholder="XXX0000" name="placa" type="text"
+              pattern="[A-Za-z]{3}[0-9]{4}" #placa="ngModel" [(ngModel)]="service.formData.placa" required
+              [class.invalid]="placa.invalid && placa.touched">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Ano</label>
+            <input class="form-control form-control-lg" placeholder="Informe o Ano do Veículo" name="ano" type="text"
+              pattern="[0-9]{4}" #ano="ngModel" [(ngModel)]="service.formData.ano" required
+              [class.invalid]="ano.invalid && ano.touched">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Tipo Combustível</label>
+            <input class="form-control form-control-lg" placeholder="Informe o Tipo de Combustível"
+              name="tipoCombustivel" type="text" #tipoCombustivel="ngModel"
+              [(ngModel)]="service.formData.tipoCombustivel" required
+              [class.invalid]="tipoCombustivel.invalid && tipoCombustivel.touched">
+          </div>
+          <div class="form-group col-md-6">
+            <label>imgURL</label>
+            <input class="form-control form-control-lg" placeholder="Selecione uma Imagem" name="imgUrl"
+              #imgUrl="ngModel" [(ngModel)]="service.formData.imgUrl" required
+              [class.invalid]="imgUrl.invalid && imgUrl.touched">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Disponibilidade</label>
+            <input class="form-control form-control-lg" placeholder="Disponibilidade do Veículo" name="disponibilidade"
+              #disponibilidade="ngModel" [(ngModel)]="service.formData.disponibilidade" required
+              [class.invalid]="disponibilidade.invalid && disponibilidade.touched">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Decrição</label>
+            <input class="form-control form-control-lg" placeholder="Descrição do Veículo" name="descricao" type="text"
+              #descricao="ngModel" [(ngModel)]="service.formData.descricao" required
+              [class.invalid]="descricao.invalid && descricao.touched">
+          </div>
+        </div>
+        <div class="form-group col-md-12">
+          <button class="btn  btn-outline-danger btn-lg btn-block" type="submit"
+            [disabled]="form.invalid">Cadastrar</button>
+        </div>
+      </form>
     </div>
-    <form type="hidden" novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
-      <input type="hidden"  name="veiculoId" [value]="service.formData.veiculoId" />
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label>Tipo</label>
-          <input class="form-control form-control-lg" placeholder="Tipo do Veículo" name="tipoFk" type="number"
-          pattern="[0-9]{0,3}" #tipoFk="ngModel" [(ngModel)]="service.formData.tipoFk" required
-            [class.invalid]="tipoFk.invalid && tipoFk.touched">
-        </div>
-        <div class="form-group col-md-6">
-          <label>Nome Veículo</label>
-          <input class="form-control form-control-lg" placeholder="Digite o Nome do Veículo" name="nome" type="text"
-            #nome="ngModel" [(ngModel)]="service.formData.nome" required [class.invalid]="nome.invalid && nome.touched">
-        </div>
-        <div class="form-group col-md-6">
-          <label>Placa</label>
-          <input class="form-control form-control-lg" placeholder="XXX0000" name="placa" type="text"
-            pattern="[A-Za-z]{3}[0-9]{4}" #placa="ngModel" [(ngModel)]="service.formData.placa" required
-            [class.invalid]="placa.invalid && placa.touched">
-        </div>
-        <div class="form-group col-md-6">
-          <label>Ano</label>
-          <input class="form-control form-control-lg" placeholder="Informe o Ano do Veículo" name="ano" type="text"
-            pattern="[0-9]{4}" #ano="ngModel" [(ngModel)]="service.formData.ano" required
-            [class.invalid]="ano.invalid && ano.touched">
-        </div>
-        <div class="form-group col-md-6">
-          <label>Tipo Combustível</label>
-          <input class="form-control form-control-lg" placeholder="Informe o Tipo de Combustível" name="tipoCombustivel"
-            type="text" #tipoCombustivel="ngModel" [(ngModel)]="service.formData.tipoCombustivel" required
-            [class.invalid]="tipoCombustivel.invalid && tipoCombustivel.touched">
-        </div>
-        <div class="form-group col-md-6">
-          <label>imgURL</label>
-          <input class="form-control form-control-lg" placeholder="Selecione uma Imagem" name="imgUrl" #imgUrl="ngModel"
-            [(ngModel)]="service.formData.imgUrl" required [class.invalid]="imgUrl.invalid && imgUrl.touched">
-        </div>
-        <div class="form-group col-md-6">
-          <label>Disponibilidade</label>
-          <input class="form-control form-control-lg" placeholder="Disponibilidade do Veículo" name="disponibilidade"
-            #disponibilidade="ngModel" [(ngModel)]="service.formData.disponibilidade" required
-            [class.invalid]="disponibilidade.invalid && disponibilidade.touched">
-        </div>
-        <div class="form-group col-md-6">
-          <label>Decrição</label>
-          <input class="form-control form-control-lg" placeholder="Descrição do Veículo" name="descricao" type="text"
-            #descricao="ngModel" [(ngModel)]="service.formData.descricao" required
-            [class.invalid]="descricao.invalid && descricao.touched">
-        </div>
-      </div>
-      <div class="form-group col-md-6">
-        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Agendar</button>
-      </div>
-    </form>
+    <!-- ----------------------------- -->
+    <div class="container col-11">
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="border-color: rgb(255, 0, 0);">Tipo</th>
+            <th style="border-color: rgb(255, 0, 0);">Nome</th>
+            <th style="border-color: rgb(255, 0, 0);">Placa</th>
+            <th style="border-color: rgb(255, 0, 0);">Ano</th>
+            <th style="border-color: rgb(255, 0, 0);">Tipo Combustível</th>
+            <th style="border-color: rgb(255, 0, 0);">Imagem</th>
+            <th style="border-color: rgb(255, 0, 0);">Disponibilidade</th>
+            <th style="border-color: rgb(255, 0, 0);">Descrição</th>
+            <th style="border-color: rgb(255, 0, 0);"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vc of service.list">
+            <td (click)="populateForm(vc)">{{vc.tipoFk}}</td>
+            <td (click)="populateForm(vc)">{{vc.nome}}</td>
+            <td (click)="populateForm(vc)">{{vc.placa}}</td>
+            <td (click)="populateForm(vc)">{{vc.ano}}</td>
+            <td (click)="populateForm(vc)">{{vc.tipoCombustivel}}</td>
+            <td (click)="populateForm(vc)"><img src="/assets/{{vc.imgUrl}}" [style.width.px]="widthImg"
+                [style.margin.px]="marginImg"></td>
+            <td (click)="populateForm(vc)">{{vc.disponibilidade}}</td>
+            <td (click)="populateForm(vc)">{{vc.descricao}}</td>
+            <td>
+              <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(vc.veiculoId)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <!-- ----------------------------- -->
-  <div class="container col-md-11">
-    <table class="table">
-      <thead>
-        <tr>
-          <th style="border-color: rgb(255, 0, 0);">Tipo</th>
-          <th style="border-color: rgb(255, 0, 0);">Nome</th>
-          <th style="border-color: rgb(255, 0, 0);">Placa</th>
-          <th style="border-color: rgb(255, 0, 0);">Ano</th>
-          <th style="border-color: rgb(255, 0, 0);">Tipo Combustível</th>
-          <th style="border-color: rgb(255, 0, 0);">Imagem</th>
-          <th style="border-color: rgb(255, 0, 0);">Disponibilidade</th>
-          <th style="border-color: rgb(255, 0, 0);">Descrição</th>
-          <th style="border-color: rgb(255, 0, 0);"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let vc of service.list">
-          <td (click)="populateForm(vc)">{{vc.tipoFk}}</td>
-          <td (click)="populateForm(vc)">{{vc.nome}}</td>
-          <td (click)="populateForm(vc)">{{vc.placa}}</td>
-          <td (click)="populateForm(vc)">{{vc.ano}}</td>
-          <td (click)="populateForm(vc)">{{vc.tipoCombustivel}}</td>
-          <td (click)="populateForm(vc)">{{vc.imgUrl}}</td>
-          <td (click)="populateForm(vc)">{{vc.disponibilidade}}</td>
-          <td (click)="populateForm(vc)">{{vc.descricao}}</td>
-          <td>
-            <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(vc.veiculoId)"></i>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<br>
-<br>
-<br>
+  <br>
+  <br>
+  <br>
 </body>

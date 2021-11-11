@@ -23,8 +23,11 @@ export class AgendamentoComponent implements OnInit {
       this.service.VcList();
     }
 
+    public cmbTipo : any;
+
     populateForm(selectedRecord: LocacaoVeiculos) {
       this.service.formData = Object.assign({}, selectedRecord);
+
     }
 
     populateTp(selectedRecord: TipoVeiculo) {
@@ -34,6 +37,7 @@ export class AgendamentoComponent implements OnInit {
     getTipoId(){
       let cmbTipo = (<HTMLSelectElement>document.getElementById("cmbTipo")).value;
       this.service.formTp.tipoId = Number(cmbTipo);
+      return this.cmbTipo = cmbTipo
     }
 
     onDelete(id: number) {
@@ -63,6 +67,10 @@ export class AgendamentoComponent implements OnInit {
         this.service.refreshList();
         this.service.TpList();
         this.toastr.success('Enviado com Sucesso!', 'Detalhe de Agendamento Registrado com Sucesso!')
+        if(this.service.formCl.qtdLocacoes == 5){
+
+          /* this.service.listaCl. */
+        }
       },
       err => { console.log(err); }
     );

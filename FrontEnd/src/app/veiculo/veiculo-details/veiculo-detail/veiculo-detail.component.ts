@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { LocacaoVeiculosService } from 'src/app/shared/Agendamento/locacao-veiculos.service';
 import { LocacaoVeiculos } from 'src/app/shared/Agendamento/locacao-veiculos.model';
+import { TipoVeiculo } from 'src/app/shared/Agendamento/tipo.model';
 import { AgendamentoComponent } from 'src/app/agendamento/agendamento.component';
 
 @Component({
@@ -31,6 +32,7 @@ export class VeiculoDetailComponent implements OnInit {
 
   populateForm(selectedRecord: Veiculo) {
     this.service.formData = Object.assign({}, selectedRecord);
+
     if(this.service.formData.disponibilidade == "true")
     {
       this.service2.formData.veiculoFk = this.service.formData.veiculoId
@@ -41,6 +43,19 @@ export class VeiculoDetailComponent implements OnInit {
 
   }
 
+      /* LÓGICA FINALIZADA DATA 11/11/2021 */
+      populateValor(selectedRecord: TipoVeiculo) {
+        this.service2.formTp = Object.assign({}, selectedRecord);
 
+        if(this.service.formData.veiculoId == this.service2.formData.veiculoFk){
+          if(this.service2.formTp.tipoId == this.service.formData.tipoFk){
+            let inptVlBase = this.service.formTp.valorBase
+            let inpTempLc = this.service2.formData.tempoLocacao
 
+            this.service2.formData.valorFinal =  Number(this.service2.formTp.valorBase) * inpTempLc
+            console.log(inptVlBase)
+          }
+        }
+      }
+  /* ------------------------------------------------------- */
 }

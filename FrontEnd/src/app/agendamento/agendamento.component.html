@@ -1,122 +1,132 @@
 <style>
   .table td:hover {
-  background-color: #940000;
-  cursor: pointer;}
+    background-color: #940000;
+    cursor: pointer;
+  }
 </style>
-<body style="background-color: rgb(36, 35, 35);">
-<div class="row">
-  <div class="container col-md-11">
-    <br>
-    <br>
-    <br>
-    <div class="jumbotron py-3 fundoJumb">
-      <h1 class="display-4 text-center TextJumb">Agendamentos</h1>
+<br>
+<br>
+<body style="background-color: rgb(36, 35, 35);border-radius: 1rem; ">
+  <div class="row">
+    <div class="container col-md-11">
+      <br>
+      <br>
+      <br>
+      <div class="jumbotron py-3 fundoJumb">
+        <h1 class="display-4 text-center TextJumb">Agendamentos</h1>
+      </div>
+
+      <form type="hidden" novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+        <input type="hidden" name="agendamentosId" [value]="service.formData.agendamentoId" />
+        <div class="form-row">
+
+          <div class="form-group col-md-12">
+            <label>Data Locação</label>
+            <input class="form-control form-control-lg" placeholder="DD/MM/AAAA" name="dataLocacao"
+              #dataLocacao="ngModel" type="date" [(ngModel)]="service.formData.dataLocacao" required
+              [class.invalid]="dataLocacao.invalid && dataLocacao.touched">
+          </div>
+
+          <div class="form-group col-md-12 " name="dataLocacao">
+            <label>Tempo Locação</label>
+            <input class="form-control form-control-lg" placeholder="Informe o Tempo de Locação em Dias"
+              name="tempoLocacao" type="number" pattern="[0-9]{0,3}" #tempoLocacao="ngModel"
+              [(ngModel)]="service.formData.tempoLocacao" required
+              [class.invalid]="tempoLocacao.invalid && tempoLocacao.touched"
+              oninput="validity.valid ? this.save = value : value = this.save;">
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="tipo">Tipo: </label>
+            <select  class="form-select" aria-label="Default select example"
+              (click)="getTipoId()" id="cmbTipo" name="tipo" type="text" pattern="[0-9]" #tipo="ngModel"
+              [(ngModel)]="service.formData.tipoFk" required [class.invalid]="tipo.invalid && tipo.touched">
+              <option selected>Selecione um tipo</option>
+              <option *ngFor="let tp of service.listaTp" value="{{tp.tipoId}}">
+                {{tp.tipo}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-12">
+            <div class="container">
+              <input type="hidden" class="form-control form-control-lg" name="veiculoFk" #veiculoFk="ngModel"
+                [(ngModel)]="service.formData.veiculoFk" required
+                [class.invalid]="veiculoFk.invalid && veiculoFk.touched" value="{{veiculoFk}}">
+              <app-veiculo-detail></app-veiculo-detail>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label>Cliente</label>
+            <input class="form-control form-control-lg" placeholder="Informe o ID do Cliente" name="clienteFk"
+              type="text" pattern="[0-9]{0,99}" #clienteFk="ngModel" [(ngModel)]="service.formData.clienteFk" required
+              [class.invalid]="clienteFk.invalid && clienteFk.touched">
+          </div>
+
+          <div class="form-group col-md-12">
+            <label>Valor Final</label>
+            <div class="input-group">
+              <span class="input-group-text" id="inputGroupPrepend2">R$</span>
+              <input class="form-control form-control-lg" placeholder="Valor Final da Locação" name="valorFinal"
+                type="text" pattern="[0-9]{0,10}" #valorFinal="ngModel" [(ngModel)]="service.formData.valorFinal"
+                required [class.invalid]="valorFinal.invalid && valorFinal.touched" disabled>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn  btn-outline-danger btn-lg btn-block" type="submit"
+            [disabled]="form.invalid">Agendar</button>
+        </div>
+      </form>
     </div>
-
-    <form type="hidden" novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
-      <input type="hidden" name="agendamentosId" [value]="service.formData.agendamentoId" />
-      <div class="form-row">
-        <div class="form-group col-md-12">
-          <label>Data Locação</label>
-          <input class="form-control form-control-lg" placeholder="DD/MM/AAAA" name="dataLocacao" #dataLocacao="ngModel"
-            type="date" [(ngModel)]="service.formData.dataLocacao" required
-            [class.invalid]="dataLocacao.invalid && dataLocacao.touched">
-        </div>
-
-        <div class="form-group col-md-12">
-          <label>Tempo Locação</label>
-          <input class="form-control form-control-lg" placeholder="Informe o Tempo de Locação em Dias"
-            name="tempoLocacao" type="number" pattern="[0-9]{0,3}" #tempoLocacao="ngModel"
-            [(ngModel)]="service.formData.tempoLocacao" required
-            [class.invalid]="tempoLocacao.invalid && tempoLocacao.touched">
-        </div>
-
-        <div class="form-group col-md-12">
-          <label for="tipo">Tipo</label>
-          <select class="form-select" aria-label="Default select example" (click)="getTipoId()" id="cmbTipo" name="tipo" type="text" pattern="[0-9]" #tipo="ngModel"
-            [(ngModel)]="service.formData.tipoFk" required [class.invalid]="tipo.invalid && tipo.touched">
-            <option selected>Selecione um tipo</option>
-            <option *ngFor="let tp of service.listaTp" value="{{tp.tipoId}}">
-              {{tp.tipo}}
-            </option>
-          </select>
-        </div>
-
-        <div class="form-group col-md-12">
-          <div class="container">
-            <input type="hidden"  class="form-control form-control-lg" name="veiculoFk" #veiculoFk="ngModel"
-              [(ngModel)]="service.formData.veiculoFk" required [class.invalid]="veiculoFk.invalid && veiculoFk.touched"
-              value="{{veiculoFk}}">
-            <app-veiculo-detail></app-veiculo-detail>
-          </div>
-        </div>
-
-        <div class="form-group col-md-12">
-          <label>Cliente</label>
-          <input class="form-control form-control-lg" placeholder="Informe o ID do Cliente" name="clienteFk" type="text"
-            pattern="[0-9]{0,99}" #clienteFk="ngModel" [(ngModel)]="service.formData.clienteFk" required
-            [class.invalid]="clienteFk.invalid && clienteFk.touched">
-        </div>
-
-        <div class="form-group col-md-12">
-          <label>Valor Final</label>
-          <input class="form-control form-control-lg" placeholder="Valor Final da Locação" name="valorFinal" type="text"
-            pattern="[0-9]{0,10}" #valorFinal="ngModel" [(ngModel)]="service.formData.valorFinal" required
-            [class.invalid]="valorFinal.invalid && valorFinal.touched">
-        </div>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Agendar</button>
-      </div>
-    </form>
   </div>
-</div>
-<!-- ------------------------------------------------------------------------------------------------------ -->
-<div class="container col-md-11">
-  <table class="table">
-    <thead style="background-color: rgb(255, 0, 0);">
-      <tr>
-        <th style="font-family: Impact; border-color: rgb(255, 0, 0); color: white">Data Locação</th>
-        <th style="font-family: Impact; border-color: rgb(255, 0, 0); color: white">Tempo Locação</th>
-        <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white">Tipo</th>
-        <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white">Cliente</th>
-        <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white">Veiculos</th>
-        <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white">Valor Final</th>
-        <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let ag of service.list">
-        <td  (click)="populateForm(ag)">{{ag.dataLocacao}}</td>
-        <td (click)="populateForm(ag)">{{ag.tempoLocacao}}</td>
+  <!-- ------------------------------------------------------------------------------------------------------ -->
+  <div class="container col-md-11">
+    <table class="table">
+      <thead style="background-color: rgb(255, 0, 0);">
+        <tr>
+          <th style="font-family: Impact; border-color: rgb(255, 0, 0); color: white">Data Locação</th>
+          <th style="font-family: Impact; border-color: rgb(255, 0, 0); color: white">Tempo Locação</th>
+          <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white">Tipo</th>
+          <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white">Cliente</th>
+          <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white">Veiculos</th>
+          <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white">Valor Final</th>
+          <th style="font-family: Impact; border-color: rgb(255, 0, 0); color:white"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ag of service.list">
+          <td (click)="populateForm(ag)">{{ag.dataLocacao}}</td>
+          <td (click)="populateForm(ag)">{{ag.tempoLocacao}}</td>
 
-        <td >
-          <div *ngFor="let tp of service.listaTp">
-            <div *ngIf="ag.tipoFk == tp.tipoId">{{tp.tipo}}</div>
-          </div>
-        </td>
+          <td>
+            <div *ngFor="let tp of service.listaTp">
+              <div *ngIf="ag.tipoFk == tp.tipoId">{{tp.tipo}}</div>
+            </div>
+          </td>
 
-        <td >
-          <div *ngFor="let cl of service.listaCl">
-            <div *ngIf="ag.clienteFk == cl.clienteId">{{cl.nome}}</div>
-          </div>
-        </td>
+          <td>
+            <div *ngFor="let cl of service.listaCl">
+              <div *ngIf="ag.clienteFk == cl.clienteId">{{cl.nome}}</div>
+            </div>
+          </td>
 
-        <td >
-          <div *ngFor="let vc of service.listaVc">
-            <div *ngIf="ag.veiculoFk == vc.veiculoId">{{vc.nome}}</div>
-          </div>
-        </td>
+          <td>
+            <div *ngFor="let vc of service.listaVc">
+              <div *ngIf="ag.veiculoFk == vc.veiculoId">{{vc.nome}}</div>
+            </div>
+          </td>
 
-        <td (click)="populateForm(ag)">{{ag.valorFinal}}</td>
-        <td>
-          <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(ag.agendamentoId)"></i>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <br>
-  <br>
-  <br>
-</div>
+          <td (click)="populateForm(ag)">{{ag.valorFinal}}</td>
+          <td>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(ag.agendamentoId)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+  </div>
 </body>

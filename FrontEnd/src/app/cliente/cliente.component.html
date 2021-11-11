@@ -1,73 +1,82 @@
-
-<body style="background-color: rgb(36, 35, 35);">
-<div class="row">
-  <div class=" container col-md-11">
-    <br>
-    <br>
-    <br>
-    <div class="jumbotron py-3 fundoJumb">
-      <h1 class="display-4 text-center TextJumb">Clientes</h1>
-    </div>
-    <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
-      <input type="hidden" name="ClienteId" [value]="service.formData.clienteId" />
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label>Nome</label>
-          <input class="form-control form-control-lg" placeholder="Digite seu Nome" name="nome" pattern="[A-Za-z ]*{0,50}" type="text" title="teste" id="nome" #nome="ngModel"
-            [(ngModel)]="service.formData.nome" required [class.invalid]="nome.invalid && nome.touched">
+<br>
+<br>
+<body style="background-color: rgb(36, 35, 35);border-radius: 1rem;">
+  <div class="row">
+    <div class=" container col-md-11">
+      <br>
+      <br>
+      <br>
+      <div class="jumbotron py-3 fundoJumb">
+        <h1 class="display-4 text-center TextJumb">Clientes</h1>
+      </div>
+      <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+        <input type="hidden" name="ClienteId" [value]="service.formData.clienteId" />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Nome</label>
+            <input class="form-control form-control-lg" placeholder="Digite seu Nome" name="nome"
+              pattern="[A-Za-z ]*{0,50}" type="text" title="teste" id="nome" #nome="ngModel"
+              [(ngModel)]="service.formData.nome" required [class.invalid]="nome.invalid && nome.touched">
           </div>
           <div class="form-group col-md-6">
-          <label>CPF</label>
-          <input class="form-control form-control-lg" placeholder="xxx.xxx.xxx.xx" name="cpf" type="text" pattern="[0-9]{11}" #cpf="ngModel"
-            [(ngModel)]="service.formData.cpf" required [class.invalid]="cpf.invalid && cpf.touched">
+            <label>CPF</label>
+            <input class="form-control form-control-lg" placeholder="xxx.xxx.xxx.xx" name="cpf" type="text"
+              pattern="[0-9]{11}" #cpf="ngModel" [(ngModel)]="service.formData.cpf" required
+              [class.invalid]="cpf.invalid && cpf.touched">
           </div>
-            <div class="form-group col-md-6">
+          <div class="form-group col-md-6">
             <label>CNH</label>
-          <input class="form-control form-control-lg" placeholder="xxxxxxxxxx.x" name="cnh" type="text" pattern="[0-9]{11}" #cnh="ngModel"
-            [(ngModel)]="service.formData.cnh" required [class.invalid]="cnh.invalid && cnh.touched">
+            <input class="form-control form-control-lg" placeholder="xxxxxxxxxx.x" name="cnh" type="text"
+              pattern="[0-9]{11}" #cnh="ngModel" [(ngModel)]="service.formData.cnh" required
+              [class.invalid]="cnh.invalid && cnh.touched">
           </div>
-            <div class="form-group col-md-6">
-          <label>Endereço</label>
-          <input class="form-control form-control-lg" placeholder="Digite seu Endereço" name="Endereco" type="text"
-            #Endereco="ngModel" [(ngModel)]="service.formData.endereco" required
-            [class.invalid]="Endereco.invalid && Endereco.touched">
+          <div class="form-group col-md-6">
+            <label>Endereço</label>
+            <input class="form-control form-control-lg" placeholder="Digite seu Endereço" name="Endereco" type="text"
+              #Endereco="ngModel" [(ngModel)]="service.formData.endereco" required
+              [class.invalid]="Endereco.invalid && Endereco.touched">
           </div>
-            <div class="form-group col-md-6">
-          <label>Telefone</label>
-          <input class="form-control form-control-lg" placeholder="(xx)xxxxx-xxxx" name="telefone" type="text" pattern="[0-9 ]{8,20}" #telefone="ngModel"
-            [(ngModel)]="service.formData.telefone" required [class.invalid]="telefone.invalid && telefone.touched">
+          <div class="form-group col-md-6">
+            <label>Telefone</label>
+            <input class="form-control form-control-lg" placeholder="(xx)xxxxx-xxxx" name="telefone" type="text"
+              pattern="[0-9 ]{8,20}" #telefone="ngModel" [(ngModel)]="service.formData.telefone" required
+              [class.invalid]="telefone.invalid && telefone.touched">
           </div>
-            <div class="form-group col-md-6">
-          <label>Email</label>
-          <input class="form-control form-control-lg" placeholder="exemplo@email.com" name="email" type="email" #email="ngModel"
-            [(ngModel)]="service.formData.email" required [class.invalid]="email.invalid && email.touched">
+          <div class="form-group col-md-6">
+            <label>Email</label>
+            <input class="form-control form-control-lg" placeholder="exemplo@email.com" name="email" type="email"
+              #email="ngModel" [(ngModel)]="service.formData.email" required
+              [class.invalid]="email.invalid && email.touched">
           </div>
-            <div class="form-group col-md-6">
-          <label>Data de Nascimento</label>
-          <input class="form-control form-control-lg" placeholder="DD/MM/AAAA" name="dataNascimento" type="date"
-            #dataNascimento="ngModel" [(ngModel)]="service.formData.dataNascimento" required
-            [class.invalid]="dataNascimento.invalid && dataNascimento.touched">
+          <div class="form-group col-md-6">
+            <label>Data de Nascimento</label>
+            <input class="form-control form-control-lg" placeholder="DD/MM/AAAA" name="dataNascimento" type="date"
+              #dataNascimento="ngModel" [(ngModel)]="service.formData.dataNascimento" required
+              [class.invalid]="dataNascimento.invalid && dataNascimento.touched">
           </div>
-            <div class="form-group col-md-6">
-          <label>Quantidade de Locações</label>
-          <input class="form-control form-control-lg" placeholder="Digite a quantidade de locações" name="qtdLocacoes" type="number"
-            #qtdLocacoes="ngModel" [(ngModel)]="service.formData.qtdLocacoes" required
-            [class.invalid]="qtdLocacoes.invalid && qtdLocacoes.touched">
+          <div class="form-group col-md-6">
+            <label>Quantidade de Locações</label>
+            <input class="form-control form-control-lg" placeholder="Digite a quantidade de locações" name="qtdLocacoes"
+              type="number" #qtdLocacoes="ngModel" [(ngModel)]="service.formData.qtdLocacoes" required
+              [class.invalid]="qtdLocacoes.invalid && qtdLocacoes.touched">
             <div class="form-group col-md-6">
             </div>
-          <label>Desconto</label>
-          <input class="form-control form-control-lg" placeholder="desconto não aplicado" name="desconto"
-            #desconto="ngModel" [(ngModel)]="service.formData.desconto" required
-            [class.invalid]="desconto.invalid && desconto.touched">
+            <label>Desconto</label>
+            <input class="form-control form-control-lg" placeholder="desconto não aplicado" name="desconto"
+              #desconto="ngModel" [(ngModel)]="service.formData.desconto" required
+              [class.invalid]="desconto.invalid && desconto.touched">
           </div>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Cadastrar</button>
-      </div>
-    </form>
+        </div>
+        <div class="form-group col-md-12">
+          <button class="btn  btn-outline-danger btn-lg btn-block" type="submit"
+            [disabled]="form.invalid">Cadastrar</button>
+        </div>
+      </form>
+    </div>
   </div>
-  <!-- -------------------------------------------------------------------------------------------------------- -->
-  <div class=" container col-md-11">
+
+  <div class="container row">
+    <div class="container col-md-12">
     <table class="table">
       <thead>
         <tr>
@@ -101,8 +110,7 @@
       </tbody>
     </table>
   </div>
+
 </div>
-<br>
-<br>
-<br>
+
 </body>
