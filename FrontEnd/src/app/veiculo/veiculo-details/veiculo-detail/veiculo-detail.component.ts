@@ -31,7 +31,14 @@ export class VeiculoDetailComponent implements OnInit {
 
   populateForm(selectedRecord: Veiculo) {
     this.service.formData = Object.assign({}, selectedRecord);
-    this.service2.formData.veiculoFk = this.service.formData.veiculoId
+    if(this.service.formData.disponibilidade == "true")
+    {
+      this.service2.formData.veiculoFk = this.service.formData.veiculoId
+    }
+    else{
+      this.toastr.error('Veículo Indisponível', 'Detalhes de Agendamentos Falhou:')
+    }
+
   }
 
 

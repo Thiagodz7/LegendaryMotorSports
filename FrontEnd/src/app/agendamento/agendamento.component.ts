@@ -42,7 +42,7 @@ export class AgendamentoComponent implements OnInit {
           .subscribe(
             res => {
               this.service.refreshList();
-              this.toastr.error("Deletado com Sucesso", 'Detalhe de Pagamento');
+              this.toastr.error("Deletado com Sucesso", 'Detalhe de Agendamento');
             },
             err => { console.log(err) }
           )
@@ -62,7 +62,7 @@ export class AgendamentoComponent implements OnInit {
         this.resetForm(form);
         this.service.refreshList();
         this.service.TpList();
-        this.toastr.success('Enviado com Sucesso!', 'Detalhe de Pagamento Registrado com Sucesso!')
+        this.toastr.success('Enviado com Sucesso!', 'Detalhe de Agendamento Registrado com Sucesso!')
       },
       err => { console.log(err); }
     );
@@ -73,7 +73,7 @@ export class AgendamentoComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Pagamento Registrados!')
+        this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Agendamentos Atualizados!')
       },
       err => { console.log(err); }
     );
