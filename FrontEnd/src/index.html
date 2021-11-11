@@ -15,6 +15,10 @@
       background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(114,113,140,1) 51%, rgba(46,46,46,1) 99%);
     }
     /* style="font-family: Impact; color:white" */
+    .invisible{
+      background-color:rgba(255, 255, 255, 0); /* Muda direto na cor a opacidade daí fica mais facil */
+      opacity:0;
+    }
     thead{
       background-color:rgb(255, 0, 0);
     }
@@ -31,9 +35,35 @@
       color: white;
     }
   </style>
+  <!-- Custom styles for this template -->
+    <link href="footers.css" rel="stylesheet">
 </head>
 <body class="fundoSite">
-  <app-root></app-root>
+  <app-root><app-home></app-home></app-root>
   <script src="https://kit.fontawesome.com/3f2f7119de.js" crossorigin="anonymous"></script>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="container">
+        <div class="row align-items-end">
+            <div style="color: white;" class="col-lg-4 text-lg-start">Copyright &copy; CarrosLendários 2021</div>
+            <div class="col text-lg-end">
+              <a style="color: rgb(23, 24, 41);" class="link-dark text-decoration-none me-3" href="#!">Políticas de Privacidade </a>
+              <a style="color: rgb(23, 24, 41);"  class="link-dark text-decoration-none" href="#!">Termos de Uso</a>
+            </div>
+        </div>
+    </div>
+  </footer>
+
+  <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

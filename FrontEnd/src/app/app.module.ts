@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { VeiculoDetailComponent } from './veiculo/veiculo-details/veiculo-detail/veiculo-detail.component';
+import { HomeComponent } from './home/home/home.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { VeiculoDetailComponent } from './veiculo/veiculo-details/veiculo-detail
     VeiculoComponent,
     ClienteComponent,
     AgendamentoComponent,
-    VeiculoDetailComponent
+    VeiculoDetailComponent,
+    HomeComponent
   ],
 
   imports: [

@@ -1,3 +1,4 @@
+<body style="background-color: rgb(36, 35, 35);">
 <div class="row">
   <div class="container col-md-11">
     <br>
@@ -7,23 +8,23 @@
       <h1 class="display-4 text-center TextJumb">Veiculos</h1>
     </div>
     <form type="hidden" novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
-      <input type="hidden" name="veiculoId" [value]="service.formData.veiculoId" />
+      <input type="hidden"  name="veiculoId" [value]="service.formData.veiculoId" />
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Tipo</label>
-          <input class="form-control form-control-lg" placeholder="Tipo do Veículo" name="tipoFk" type="text"
-            pattern="[0-9]" #tipoFk="ngModel" [(ngModel)]="service.formData.tipoFk" required
+          <input class="form-control form-control-lg" placeholder="Tipo do Veículo" name="tipoFk" type="number"
+          pattern="[0-9]{0,3}" #tipoFk="ngModel" [(ngModel)]="service.formData.tipoFk" required
             [class.invalid]="tipoFk.invalid && tipoFk.touched">
         </div>
         <div class="form-group col-md-6">
           <label>Nome Veículo</label>
-          <input class="form-control form-control-lg" placeholder="" name="Digite o Nome do Veículo" type="text"
+          <input class="form-control form-control-lg" placeholder="Digite o Nome do Veículo" name="nome" type="text"
             #nome="ngModel" [(ngModel)]="service.formData.nome" required [class.invalid]="nome.invalid && nome.touched">
         </div>
         <div class="form-group col-md-6">
           <label>Placa</label>
-          <input class="form-control form-control-lg" placeholder="XXX-0000" name="placa" type="text"
-            pattern="[A-Za-z]{3}-[0-9]{4}" #placa="ngModel" [(ngModel)]="service.formData.placa" required
+          <input class="form-control form-control-lg" placeholder="XXX0000" name="placa" type="text"
+            pattern="[A-Za-z]{3}[0-9]{4}" #placa="ngModel" [(ngModel)]="service.formData.placa" required
             [class.invalid]="placa.invalid && placa.touched">
         </div>
         <div class="form-group col-md-6">
@@ -98,3 +99,4 @@
 <br>
 <br>
 <br>
+</body>
