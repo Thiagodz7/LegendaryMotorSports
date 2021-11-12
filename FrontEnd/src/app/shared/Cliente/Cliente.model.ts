@@ -8,5 +8,5 @@ export class Cliente {
     email: string='';
     dataNascimento: string = '';
     qtdLocacoes: number = 0;
-    desconto: string = 'não';
+    desconto: string = 'sim';
 }
