@@ -29,14 +29,24 @@ export class AgendamentoComponent implements OnInit {
     }
 
     public cmbTipo : any;
+    public desconto : any;
 
     populateForm(selectedRecord: LocacaoVeiculos) {
       this.service.formData = Object.assign({}, selectedRecord);
-
     }
 
     populateCliente(selectedRecord: Cliente) {
       this.serviceCliente.formData = Object.assign({}, selectedRecord);
+
+      let desconto = this.service.formData.valorFinal
+
+      if(this.serviceCliente.formData.qtdLocacoes == 0 && this.serviceCliente.formData.desconto == 'sim'){
+        this.serviceCliente.formData.qtdLocacoes = this.serviceCliente.formData.qtdLocacoes + 1;
+        this.serviceCliente.formData.desconto = 'sim'
+        this.service.formData.valorFinal = Number(desconto) * 0.10;
+      }
+
+      return this.desconto = Number(desconto)
     }
 
     populateTp(selectedRecord: TipoVeiculo) {
@@ -46,7 +56,6 @@ export class AgendamentoComponent implements OnInit {
     getTipoId(){
       let cmbTipo = (<HTMLSelectElement>document.getElementById("cmbTipo")).value;
       this.service.formTp.tipoId = Number(cmbTipo);
-      return this.cmbTipo = cmbTipo
     }
 
     onDelete(id: number) {
@@ -72,7 +81,9 @@ export class AgendamentoComponent implements OnInit {
     }
   }
 
+
   insertRecord(form: NgForm) {
+
     this.service.postAgendamento().subscribe(
       res => {
         this.resetForm(form);
@@ -82,38 +93,48 @@ export class AgendamentoComponent implements OnInit {
         this.toastr.success('Enviado com Sucesso!', 'Detalhe de Agendamento Registrado com Sucesso!')
 
         /* FUNÇÃO PARA ITERAR QUANTIDADE DE LOCAÇÃO E ATRIVUIR UM DESCONTO AO CLIENTE */
-        if(this.serviceCliente.formData.qtdLocacoes >= 0 && this.serviceCliente.formData.qtdLocacoes < 5 ){
+        if(this.serviceCliente.formData.qtdLocacoes > 0 && this.serviceCliente.formData.qtdLocacoes < 5 && this.serviceCliente.formData.desconto == 'não'){
           this.serviceCliente.formData.qtdLocacoes = this.serviceCliente.formData.qtdLocacoes + 1;
           this.serviceCliente.formData.desconto = 'não'
 
-         this.serviceCliente.putCliente().subscribe(
+          this.serviceCliente.putCliente().subscribe(
            res => {
+
+             this.toastr.info('Faltam: '+ this.serviceCliente.formData.qtdLocacoes + ' de: 5','Pontos p/ Desconto',)
              this.resetCliente(form);
              this.serviceCliente.refreshList();
-             this.toastr.info('Promoção Iterada', 'Faltam: '+ this.serviceCliente.formData.qtdLocacoes + ' de: 5')
            },
            err => { console.log(err); }
         );
         }
         else if(this.serviceCliente.formData.qtdLocacoes == 5){
+
          this.serviceCliente.formData.qtdLocacoes = this.serviceCliente.formData.qtdLocacoes - 5;
+
          this.serviceCliente.formData.desconto = 'sim'
+
          this.serviceCliente.putCliente().subscribe(
            res => {
+             this.toastr.info( 'No próximo agendamento o cliente ganha desconto!','Promoção Reiniciada!' )
              this.resetCliente(form);
              this.serviceCliente.refreshList();
-             this.toastr.info('Parabéns, ganhou 10% de Desconto!')
            },
            err => { console.log(err); }
         );
         }
-        else if(this.serviceCliente.formData.qtdLocacoes == 0){
+        else if(this.serviceCliente.formData.qtdLocacoes == 1 && this.serviceCliente.formData.desconto == 'sim'){
+
           this.serviceCliente.formData.desconto = 'não'
+          /* this.serviceCliente.formData.qtdLocacoes = this.serviceCliente.formData.qtdLocacoes - 1 */
+          this.service.formData.valorFinal = this.desconto * 0.10;
+
+
           this.serviceCliente.putCliente().subscribe(
             res => {
+              this.toastr.info('Parabéns, ganhou 10% de Desconto!', 'Valor Atualizado: ' + this.desconto)
               this.resetCliente(form);
               this.serviceCliente.refreshList();
-              this.toastr.info('Promoção Reiniciada', 'Faltam: '+ this.serviceCliente.formData.qtdLocacoes + ' de: 5' )
+
             },
             err => { console.log(err); }
          );

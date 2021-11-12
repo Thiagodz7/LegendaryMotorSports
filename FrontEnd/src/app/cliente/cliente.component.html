@@ -1,6 +1,7 @@
 <br>
 <br>
 <body style="background-color: rgb(36, 35, 35);border-radius: 1rem;">
+
   <div class="row">
     <div class=" container col-md-11">
       <br>
@@ -55,31 +56,32 @@
               [class.invalid]="dataNascimento.invalid && dataNascimento.touched">
           </div>
           <div class="form-group col-md-6">
-            <label>Quantidade de Locações</label>
-            <input class="form-control form-control-lg" placeholder="Digite a quantidade de locações" name="qtdLocacoes"
-              type="number" #qtdLocacoes="ngModel" [(ngModel)]="service.formData.qtdLocacoes" required
+            <!-- <label>Quantidade de Locações</label> -->
+            <input type="hidden" class="form-control form-control-lg" placeholder="Digite a quantidade de locações" name="qtdLocacoes"
+               #qtdLocacoes="ngModel" [(ngModel)]="service.formData.qtdLocacoes" required
               [class.invalid]="qtdLocacoes.invalid && qtdLocacoes.touched">
             <div class="form-group col-md-6">
             </div>
-            <label>Desconto</label>
-            <input class="form-control form-control-lg" placeholder="desconto não aplicado" name="desconto"
+            <!-- <label>Desconto</label> -->
+            <input type="hidden" class="form-control form-control-lg" placeholder="desconto não aplicado" name="desconto"
               #desconto="ngModel" [(ngModel)]="service.formData.desconto" required
               [class.invalid]="desconto.invalid && desconto.touched">
           </div>
         </div>
-        <div class="form-group col-md-12">
+        <div  class="form-group col-md-12">
           <button class="btn  btn-outline-danger btn-lg btn-block" type="submit"
             [disabled]="form.invalid">Cadastrar</button>
         </div>
       </form>
     </div>
-  </div>
 
-  <div class="container row">
-    <div class="container col-md-12">
+
+
+<div class="container">
     <table class="table">
       <thead>
         <tr>
+          <th style="border-color: rgb(255, 0, 0);">ID</th>
           <th style="border-color: rgb(255, 0, 0);">Nome</th>
           <th style="border-color: rgb(255, 0, 0);">Cpf</th>
           <th style="border-color: rgb(255, 0, 0);">Cnh</th>
@@ -94,6 +96,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let cl of service.list">
+          <td (click)="populateForm(cl)">{{cl.clienteId}}</td>
           <td (click)="populateForm(cl)">{{cl.nome}}</td>
           <td (click)="populateForm(cl)">{{cl.cpf}}</td>
           <td (click)="populateForm(cl)">{{cl.cnh}}</td>
@@ -110,7 +113,6 @@
       </tbody>
     </table>
   </div>
-
 </div>
 
 </body>
