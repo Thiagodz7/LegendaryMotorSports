@@ -14,43 +14,43 @@
         <input type="hidden" name="ClienteId" [value]="service.formData.clienteId" />
         <div class="form-row">
           <div class="form-group col-md-12">
-            <label>Nome</label>
+            <label>Nome*</label>
             <input class="form-control form-control-lg" placeholder="Digite seu Nome" name="nome"
               pattern="[A-Za-z ]*{0,50}" type="text" title="teste" id="nome" #nome="ngModel"
               [(ngModel)]="service.formData.nome" required [class.invalid]="nome.invalid && nome.touched">
           </div>
           <div class="form-group col-md-6">
-            <label>CPF</label>
+            <label>CPF*</label>
             <input class="form-control form-control-lg" placeholder="xxx.xxx.xxx.xx" name="cpf" type="text"
               pattern="[0-9]{11}" #cpf="ngModel" [(ngModel)]="service.formData.cpf" required
               [class.invalid]="cpf.invalid && cpf.touched">
           </div>
           <div class="form-group col-md-6">
-            <label>CNH</label>
+            <label>CNH*</label>
             <input class="form-control form-control-lg" placeholder="xxxxxxxxxx.x" name="cnh" type="text"
               pattern="[0-9]{11}" #cnh="ngModel" [(ngModel)]="service.formData.cnh" required
               [class.invalid]="cnh.invalid && cnh.touched">
           </div>
           <div class="form-group col-md-6">
-            <label>Endereço</label>
+            <label>Endereço*</label>
             <input class="form-control form-control-lg" placeholder="Digite seu Endereço" name="Endereco" type="text"
               #Endereco="ngModel" [(ngModel)]="service.formData.endereco" required
               [class.invalid]="Endereco.invalid && Endereco.touched">
           </div>
           <div class="form-group col-md-6">
-            <label>Telefone</label>
+            <label>Telefone*</label>
             <input class="form-control form-control-lg" placeholder="(xx)xxxxx-xxxx" name="telefone" type="text"
               pattern="[0-9 ]{8,20}" #telefone="ngModel" [(ngModel)]="service.formData.telefone" required
               [class.invalid]="telefone.invalid && telefone.touched">
           </div>
           <div class="form-group col-md-6">
-            <label>Email</label>
+            <label>Email*</label>
             <input class="form-control form-control-lg" placeholder="exemplo@email.com" name="email" type="email"
               #email="ngModel" [(ngModel)]="service.formData.email" required
               [class.invalid]="email.invalid && email.touched">
           </div>
           <div class="form-group col-md-6">
-            <label>Data de Nascimento</label>
+            <label>Data de Nascimento*</label>
             <input class="form-control form-control-lg" placeholder="DD/MM/AAAA" name="dataNascimento" type="date"
               #dataNascimento="ngModel" [(ngModel)]="service.formData.dataNascimento" required
               [class.invalid]="dataNascimento.invalid && dataNascimento.touched">
@@ -74,7 +74,6 @@
         </div>
       </form>
     </div>
-
 
  <div class="container col-md-12">
     <table class="table">

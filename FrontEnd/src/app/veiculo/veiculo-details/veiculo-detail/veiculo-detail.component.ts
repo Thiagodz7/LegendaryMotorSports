@@ -40,6 +40,8 @@ export class VeiculoDetailComponent implements OnInit {
     {
       this.service2.formData.veiculoFk = this.service.formData.veiculoId
 
+      this.toastr.success('Veículo Adicionado: '+ this.service.formData.nome , 'Adicionado com Sucesso!')
+
     }
     else{
       this.toastr.error('Veículo Indisponível', 'Detalhes de Agendamentos Falhou:')

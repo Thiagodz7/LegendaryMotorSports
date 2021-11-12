@@ -21,14 +21,14 @@
         <div class="form-row">
 
           <div class="form-group col-md-5">
-            <label>Data Locação</label>
+            <label>Data Locação*</label>
             <input class="form-control form-control-lg" placeholder="DD/MM/AAAA" name="dataLocacao"
               #dataLocacao="ngModel" type="date" [(ngModel)]="service.formData.dataLocacao" required
               [class.invalid]="dataLocacao.invalid && dataLocacao.touched">
           </div>
 
           <div class="form-group col-md-2" name="dataLocacao">
-            <label>Dias Locação</label>
+            <label>Dias Locação*</label>
             <input class="form-control form-control-lg" placeholder="Informe o Tempo de Locação em Dias"
               name="tempoLocacao" type="number" pattern="[0-9]{0,3}" #tempoLocacao="ngModel"
               [(ngModel)]="service.formData.tempoLocacao" required
@@ -37,7 +37,7 @@
           </div>
 
           <div class="form-group col-md-5">
-            <label for="tipo">Tipo: </label>
+            <label for="tipo">Tipo*: </label>
             <select  class="form-control form-control-lg" aria-label="Default select example"
               (click)="getTipoId()" id="cmbTipo" name="tipo" type="text" pattern="[0-9]" #tipo="ngModel"
               [(ngModel)]="service.formData.tipoFk" required [class.invalid]="tipo.invalid && tipo.touched">
@@ -58,7 +58,7 @@
           </div>
 
           <div class="form-group col-md-6">
-            <label>Cliente</label>
+            <label>Cliente*</label>
             <div class="row">
               <div class="col-8">
                 <input class="form-control form-control-lg" placeholder="Informe o ID do Cliente" name="clienteFk"
