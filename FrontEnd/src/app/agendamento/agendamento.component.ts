@@ -43,7 +43,7 @@ export class AgendamentoComponent implements OnInit {
       if(this.serviceCliente.formData.qtdLocacoes == 0 && this.serviceCliente.formData.desconto == 'sim'){
         this.serviceCliente.formData.qtdLocacoes = this.serviceCliente.formData.qtdLocacoes + 1;
         this.serviceCliente.formData.desconto = 'sim'
-        this.service.formData.valorFinal = Number(desconto) * 0.10;
+        this.service.formData.valorFinal = Number(desconto) - (Number(desconto) * 0.10);/*  */
       }
 
       return this.desconto = Number(desconto)
@@ -58,13 +58,14 @@ export class AgendamentoComponent implements OnInit {
       this.service.formTp.tipoId = Number(cmbTipo);
     }
 
+
     onDelete(id: number) {
-      if (confirm('Tem Certeza que Deseja Deletar esse Registro?')) {
+      if (confirm('Tem Certeza que Deseja Deletar esse Agendamento?')) {
         this.service.deleteAgendamento(id)
           .subscribe(
             res => {
               this.service.refreshList();
-              this.toastr.error("Deletado com Sucesso", 'Detalhe de Agendamento');
+              this.toastr.error("Deletado com Sucesso", 'Agendamento');
             },
             err => { console.log(err) }
           )
@@ -90,7 +91,7 @@ export class AgendamentoComponent implements OnInit {
         this.resetVeiculo(form);
         this.service.refreshList();
         this.service.TpList();
-        this.toastr.success('Enviado com Sucesso!', 'Detalhe de Agendamento Registrado com Sucesso!')
+        this.toastr.success('Registrado com Sucesso!', 'Agendamento')
 
         /* FUNÇÃO PARA ITERAR QUANTIDADE DE LOCAÇÃO E ATRIVUIR UM DESCONTO AO CLIENTE */
         if(this.serviceCliente.formData.qtdLocacoes > 0 && this.serviceCliente.formData.qtdLocacoes < 5 && this.serviceCliente.formData.desconto == 'não'){
@@ -126,7 +127,7 @@ export class AgendamentoComponent implements OnInit {
 
           this.serviceCliente.formData.desconto = 'não'
           /* this.serviceCliente.formData.qtdLocacoes = this.serviceCliente.formData.qtdLocacoes - 1 */
-          this.service.formData.valorFinal = this.desconto * 0.10;
+          this.desconto = this.desconto - (this.desconto * 0.10);
 
 
           this.serviceCliente.putCliente().subscribe(
@@ -150,7 +151,7 @@ export class AgendamentoComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Agendamentos Atualizados!')
+        this.toastr.info('Atualizado com Sucesso!', 'Agendamento')
       },
       err => { console.log(err); }
     );

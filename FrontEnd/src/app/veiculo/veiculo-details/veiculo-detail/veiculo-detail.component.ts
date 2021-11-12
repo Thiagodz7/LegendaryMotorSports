@@ -16,6 +16,9 @@ import { AgendamentoComponent } from 'src/app/agendamento/agendamento.component'
 })
 export class VeiculoDetailComponent implements OnInit {
 
+  widthImg: number = 100;
+    marginImg: number = 2;
+
   constructor(public service: VeiculoService ,
     private toastr: ToastrService, public service2: LocacaoVeiculosService) { }
 
@@ -33,7 +36,7 @@ export class VeiculoDetailComponent implements OnInit {
   populateForm(selectedRecord: Veiculo) {
     this.service.formData = Object.assign({}, selectedRecord);
 
-    if(this.service.formData.disponibilidade == "true")
+    if(this.service.formData.disponibilidade == "disponível")
     {
       this.service2.formData.veiculoFk = this.service.formData.veiculoId
 

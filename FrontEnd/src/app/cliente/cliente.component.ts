@@ -24,12 +24,12 @@ export class ClienteComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    if (confirm('Tem Certeza que Deseja Deletar esse Registro?')) {
+    if (confirm('Tem Certeza que Deseja Deletar esse Cliente?')) {
       this.service.deleteCliente(id)
         .subscribe(
           res => {
             this.service.refreshList();
-            this.toastr.error("Deletado com Sucesso", 'Detalhe de Pagamento');
+            this.toastr.error("Deletado com Sucesso", 'Cliente');
           },
           err => { console.log(err) }
         )
@@ -48,7 +48,7 @@ insertRecord(form: NgForm) {
     res => {
       this.resetForm(form);
       this.service.refreshList();
-      this.toastr.success('Enviado com Sucesso!', 'Detalhe de Pagamento Registrado com Sucesso!')
+      this.toastr.success('Registrado com Sucesso!', 'Cliente')
     },
     err => { console.log(err); }
   );
@@ -59,7 +59,7 @@ updateRecord(form: NgForm) {
     res => {
       this.resetForm(form);
       this.service.refreshList();
-      this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Pagamento Registrados!')
+      this.toastr.info('Atualizado com Sucesso!', 'Cliente')
     },
     err => { console.log(err); }
   );

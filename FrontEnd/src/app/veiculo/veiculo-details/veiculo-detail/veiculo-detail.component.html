@@ -41,19 +41,33 @@
 
           <td *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
             <div *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+              Nome:
               {{vc.nome}}
             </div>
           </td>
 
           <td *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
             <div *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
-              {{vc.imgUrl}}
+              <img src="/assets/{{vc.imgUrl}}" [style.width.px]="widthImg"
+              [style.margin.px]="marginImg">
+            </div>
+          </td>
+
+
+          <!-- <td (click)="populateForm(vc)"><img src="/assets/{{vc.imgUrl}}" [style.width.px]="widthImg"
+            [style.margin.px]="marginImg"></td> -->
+
+          <td *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+            <div *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
+                Disponibilidade:
+                {{vc.disponibilidade}}
             </div>
           </td>
 
           <td *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
             <div *ngIf="vc.tipoFk == this.service2.formTp.tipoId">
-              {{vc.disponibilidade}}
+                Valor Base:
+                R${{tp.valorBase}}
             </div>
           </td>
 

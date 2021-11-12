@@ -21,6 +21,7 @@ export class VeiculoComponent implements OnInit {
     marginImg: number = 2;
 
     ngOnInit(): void {
+      this.service.refreshList();
       this.service2.refreshList();
       this.service2.TpList();
     }
@@ -35,12 +36,12 @@ export class VeiculoComponent implements OnInit {
     }
 
     onDelete(id: number) {
-      if (confirm('Tem Certeza que Deseja Deletar esse Registro?')) {
+      if (confirm('Tem Certeza que Deseja Deletar esse Veiculo?')) {
         this.service.deleteVeiculo(id)
           .subscribe(
             res => {
               this.service.refreshList();
-              this.toastr.error("Deletado com Sucesso", 'Detalhe de Pagamento');
+              this.toastr.error("Deletado com Sucesso", 'Veiculo');
             },
             err => { console.log(err) }
           )
@@ -59,7 +60,7 @@ export class VeiculoComponent implements OnInit {
         res => {
           this.resetForm(form);
           this.service.refreshList();
-          this.toastr.success('Enviado com Sucesso!', 'Detalhe de Pagamento Registrado com Sucesso!')
+          this.toastr.success('Registrado com Sucesso!', 'Veiculo')
         },
         err => { console.log(err); }
       );
@@ -70,7 +71,7 @@ export class VeiculoComponent implements OnInit {
         res => {
           this.resetForm(form);
           this.service.refreshList();
-          this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Pagamento Registrados!')
+          this.toastr.info('Atualizado com Sucesso!', 'Veiculo')
         },
         err => { console.log(err); }
       );

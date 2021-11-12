@@ -14,10 +14,10 @@
         <div class="form-row">
 
           <div class="form-group col-md-6">
-            <label type="hidden">{{this.service.formData.tipoFk}}</label>
+            <label style="color: rgba(221, 221, 221, 0);" type="hidden">{{this.service.formData.tipoFk}}</label>
             <div class="form-group col-md-12">
               <label for="tipo">Tipo: </label>
-              <select class="form-select" aria-label="Default select example" (click)="gettipoFk()" id="cmbTipoVC"
+              <select class="form-control form-control-lg" aria-label="Default select example" (click)="gettipoFk()" id="cmbTipoVC"
                 name="tipo" type="text" pattern="[0-9]" #tipo="ngModel" [(ngModel)]="service.formData.tipoFk" required
                 [class.invalid]="tipo.invalid && tipo.touched">
                 <option selected>Selecione um tipo</option>
@@ -61,9 +61,12 @@
           </div>
           <div class="form-group col-md-6">
             <label>Disponibilidade</label>
-            <input class="form-control form-control-lg" placeholder="Disponibilidade do Veículo" name="disponibilidade"
+            <select name="" id="" class="form-control form-control-lg" placeholder="Disponibilidade do Veículo" name="disponibilidade"
               #disponibilidade="ngModel" [(ngModel)]="service.formData.disponibilidade" required
               [class.invalid]="disponibilidade.invalid && disponibilidade.touched">
+              <option value="disponível">disponível</option>
+              <option value="indisponível">indisponível</option>
+              </select>
           </div>
           <div class="form-group col-md-6">
             <label>Decrição</label>
@@ -74,7 +77,7 @@
         </div>
         <div class="form-group col-md-12">
           <button class="btn  btn-outline-danger btn-lg btn-block" type="submit"
-            [disabled]="form.invalid">Cadastrar</button>
+            [disabled]="form.invalid">Salvar</button>
         </div>
       </form>
     </div>

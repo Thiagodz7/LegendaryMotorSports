@@ -20,15 +20,15 @@
         <input type="hidden" name="agendamentosId" [value]="service.formData.agendamentoId"/>
         <div class="form-row">
 
-          <div class="form-group col-md-12">
+          <div class="form-group col-md-5">
             <label>Data Locação</label>
             <input class="form-control form-control-lg" placeholder="DD/MM/AAAA" name="dataLocacao"
               #dataLocacao="ngModel" type="date" [(ngModel)]="service.formData.dataLocacao" required
               [class.invalid]="dataLocacao.invalid && dataLocacao.touched">
           </div>
 
-          <div class="form-group col-md-12 " name="dataLocacao">
-            <label>Tempo Locação</label>
+          <div class="form-group col-md-2" name="dataLocacao">
+            <label>Dias Locação</label>
             <input class="form-control form-control-lg" placeholder="Informe o Tempo de Locação em Dias"
               name="tempoLocacao" type="number" pattern="[0-9]{0,3}" #tempoLocacao="ngModel"
               [(ngModel)]="service.formData.tempoLocacao" required
@@ -36,9 +36,9 @@
               oninput="validity.valid ? this.save = value : value = this.save;">
           </div>
 
-          <div class="form-group col-md-12">
+          <div class="form-group col-md-5">
             <label for="tipo">Tipo: </label>
-            <select  class="form-select" aria-label="Default select example"
+            <select  class="form-control form-control-lg" aria-label="Default select example"
               (click)="getTipoId()" id="cmbTipo" name="tipo" type="text" pattern="[0-9]" #tipo="ngModel"
               [(ngModel)]="service.formData.tipoFk" required [class.invalid]="tipo.invalid && tipo.touched">
               <option selected>Selecione um tipo</option>
@@ -57,25 +57,30 @@
             </div>
           </div>
 
-
-
-          <div class="form-group col-md-12">
+          <div class="form-group col-md-6">
             <label>Cliente</label>
-            <input class="form-control form-control-lg" placeholder="Informe o ID do Cliente" name="clienteFk"
-              type="text" pattern="[0-9]{0,99}" #clienteFk="ngModel" [(ngModel)]="service.formData.clienteFk" required
-              [class.invalid]="clienteFk.invalid && clienteFk.touched">
-              <div *ngFor="let cl of service.listaCl" >
-                <div *ngIf="this.service.formData.clienteFk == cl.clienteId" >
-                  <div class="form-check mb-3">
-                    <input type="checkbox" (click)="populateCliente(cl)" class="form-check-input" id="validationFormCheck1" required>
-                    <label class="form-check-label" for="validationFormCheck1">Confirme seu Nome de Usuário: {{cl.nome}}</label>
-                    <div class="invalid-feedback">Confirme seu nome</div>
+            <div class="row">
+              <div class="col-8">
+                <input class="form-control form-control-lg" placeholder="Informe o ID do Cliente" name="clienteFk"
+                type="text" pattern="[0-9]{0,99}" #clienteFk="ngModel" [(ngModel)]="service.formData.clienteFk" required
+                [class.invalid]="clienteFk.invalid && clienteFk.touched">
+              </div>
+              <div class="col-4">
+                <div *ngFor="let cl of service.listaCl" >
+                  <div *ngIf="this.service.formData.clienteFk == cl.clienteId" >
+                    <div class="form-check mb-3">
+                      <input type="checkbox" (click)="populateCliente(cl)" class="form-check-input" id="validationFormCheck1" required>
+                      <label class="form-check-label" for="validationFormCheck1">Confirme seu Nome de Usuário: {{cl.nome}}</label>
+                      <div class="invalid-feedback">Confirme seu nome</div>
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
 
-          <div class="form-group col-md-12">
+        <div class="col-md-2"></div>
+          <div class="form-group col-md-4">
             <label>Valor Final</label>
             <div class="input-group">
               <span class="input-group-text" id="inputGroupPrepend2">R$</span>
@@ -107,7 +112,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let ag of service.list">
+        <tr style="border-color: rgb(0, 0, 0);" *ngFor="let ag of service.list">
           <td (click)="populateForm(ag)">{{ag.dataLocacao}}</td>
           <td (click)="populateForm(ag)">{{ag.tempoLocacao}}</td>
 
