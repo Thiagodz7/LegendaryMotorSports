@@ -13,7 +13,7 @@
       <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
         <input type="hidden" name="ClienteId" [value]="service.formData.clienteId" />
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label>Nome</label>
             <input class="form-control form-control-lg" placeholder="Digite seu Nome" name="nome"
               pattern="[A-Za-z ]*{0,50}" type="text" title="teste" id="nome" #nome="ngModel"
@@ -76,22 +76,21 @@
     </div>
 
 
-
-<div class="container">
+ <div class="container col-md-12">
     <table class="table">
       <thead>
         <tr>
-          <th style="border-color: rgb(255, 0, 0);">ID</th>
-          <th style="border-color: rgb(255, 0, 0);">Nome</th>
-          <th style="border-color: rgb(255, 0, 0);">Cpf</th>
-          <th style="border-color: rgb(255, 0, 0);">Cnh</th>
-          <th style="border-color: rgb(255, 0, 0);">Endereço</th>
-          <th style="border-color: rgb(255, 0, 0);">Telefone</th>
-          <th style="border-color: rgb(255, 0, 0);">Email</th>
-          <th style="border-color: rgb(255, 0, 0);">Data de Nascimento</th>
-          <th style="border-color: rgb(255, 0, 0);">Quantidade de Locações</th>
-          <th style="border-color: rgb(255, 0, 0);">Desconto</th>
-          <th style="border-color: rgb(255, 0, 0);"></th>
+          <th style="border-color: rgb(255, 0, 0); font-weight:bolder">ID</th>
+          <th style="border-color: rgb(255, 0, 0); font-weight:bolder">Nome</th>
+          <th style="border-color: rgb(255, 0, 0); font-weight:bolder">Cpf</th>
+          <th style="border-color: rgb(255, 0, 0); font-weight:bolder">Cnh</th>
+          <th style="border-color: rgb(255, 0, 0); font-weight:bolder">Endereço</th>
+          <th style="border-color: rgb(255, 0, 0); font-weight:bolder">Telefone</th>
+          <th style="border-color: rgb(255, 0, 0); font-weight:bolder">Email</th>
+          <th style="border-color: rgb(255, 0, 0); font-weight:bolder">Data Nasc.</th>
+          <th style="border-color: rgb(255, 0, 0); font-weight:bolder">Qtd Locações</th>
+          <th style="border-color: rgb(255, 0, 0); font-weight:bolder">Desconto</th>
+          <th style="border-color: rgb(255, 0, 0); font-weight:bolder"></th>
         </tr>
       </thead>
       <tbody>
@@ -113,6 +112,7 @@
       </tbody>
     </table>
   </div>
+
 </div>
 
 </body>
